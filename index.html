@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEST MISSION Exclusive Exam Batch</title>
+    <title>DU B Weekly Model Test 01 - TEST MISSION</title>
     <!-- Hind Siliguri Font -->
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -63,25 +63,60 @@
 
         h1.main-title {
             color: var(--primary);
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 700;
             margin: 0 0 5px 0;
             text-transform: uppercase;
         }
 
         .sub-title { font-size: 20px; font-weight: 600; margin: 0 0 15px 0; color: var(--text-main); }
-        .info-text { font-size: 15px; color: var(--secondary); margin: 0 0 5px 0; }
         
+        /* Rules & Marks Box */
+        .rules-box {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-left: 4px solid var(--primary);
+            padding: 18px 20px;
+            border-radius: 8px;
+            font-size: 14.5px;
+            color: #334155;
+            margin: 20px 0;
+            text-align: left;
+            line-height: 1.7;
+        }
+
+        .rules-box h3 {
+            margin: 0 0 10px 0;
+            color: var(--primary);
+            font-size: 16px;
+        }
+
+        .rules-box ul {
+            margin: 5px 0 15px 20px;
+            padding: 0;
+        }
+
+        .rules-box li {
+            margin-bottom: 6px;
+        }
+
+        .notice-badge {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #b91c1c;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 13.5px;
+            margin-top: 10px;
+        }
+
         /* Form Inputs */
         .form-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 15px;
-            margin-top: 25px;
-        }
-
-        @media (max-width: 600px) {
-            .form-grid { grid-template-columns: 1fr; }
+            margin-top: 20px;
         }
 
         .form-group label {
@@ -109,6 +144,27 @@
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
+        .consent-container {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            padding: 12px 15px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 14.5px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .consent-container input {
+            margin-right: 12px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
         /* Buttons */
         .btn-primary {
             background: linear-gradient(135deg, var(--primary), var(--primary-hover));
@@ -122,11 +178,46 @@
             width: 100%;
             transition: transform 0.2s, box-shadow 0.2s;
             font-family: inherit;
+            display: inline-block;
+            box-sizing: border-box;
+            text-decoration: none;
+            text-align: center;
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-written {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white !important;
+            border: none;
+            padding: 18px 30px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-sizing: border-box;
+            text-decoration: none;
+            text-align: center;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+            animation: pulseGlow 2s infinite;
+        }
+
+        .btn-written:hover {
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6);
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
 
         .btn-small {
@@ -141,24 +232,12 @@
             font-family: inherit;
         }
 
-        /* Rules Box */
-        .rules-box {
-            background: #f8fafc;
-            border: 1px dashed #cbd5e1;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 14px;
-            color: var(--secondary);
-            margin: 25px 0;
-            text-align: left;
-        }
-
         /* Top Bar */
         .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             padding: 15px 25px;
             border-radius: 12px;
@@ -185,15 +264,25 @@
             .top-bar { flex-direction: column; gap: 10px; text-align: center; }
         }
 
-        /* Questions */
+        /* Sticky Section Header */
         .section-header {
             background: var(--primary);
             color: white;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border-radius: 8px;
-            margin: 30px 0 15px 0;
+            margin: 25px 0 15px 0;
             font-size: 18px;
             font-weight: 600;
+            position: sticky;
+            top: 90px;
+            z-index: 90;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 700px) {
+            .section-header {
+                top: 140px;
+            }
         }
 
         .question-card {
@@ -302,39 +391,55 @@
         <img src="banner.png" alt="Exam Banner" class="banner-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'200\'><rect width=\'800\' height=\'200\' fill=\'%23e2e8f0\'/><text x=\'50%\' y=\'50%\' font-size=\'24\' fill=\'%2364748b\' text-anchor=\'middle\' dominant-baseline=\'middle\'>Banner Placeholder (Upload banner.png)</text></svg>'">
         
         <h1 class="main-title">TEST MISSION Exclusive Exam Batch by TanvirTarif</h1>
-        <h2 class="sub-title">DU B Model Test 01</h2>
-        <p class="info-text"><strong>বিষয়:</strong> বাংলা, English, ও সাধারণ জ্ঞান</p>
-        <p class="info-text"><strong>Topic:</strong> All</p>
+        <h2 class="sub-title">DU B Weekly Model Test 01</h2>
+
+        <!-- নিয়মাবলী ও মানবণ্টন -->
+        <div class="rules-box">
+            <h3>📌 অংশগ্রহণের নিয়মাবলী:</h3>
+            <ul>
+                <li>নিজ দায়িত্বে পরীক্ষার পরিবেশ তৈরি করে গুরুত্ব সহকারে পরীক্ষা দিতে হবে।</li>
+                <li>বই, গাইড, ইন্টারনেট বা অন্য কোনো রিসোর্সের হেল্প নেওয়া যাবে না এবং কোনো ধরণের অসদুপায় অবলম্বন করা যাবে না।</li>
+                <li>MCQ এক্সামের এন্ট্রি ফর্মে সঠিক ফরম্যাটে নিজের কোড দিতে হবে। কোড নং না পেয়ে থাকলে শুধু নিকনেম ব্যবহার করবে। (কোড ফরম্যাট 👉 <code>63 Sakib</code>)</li>
+                <li>MCQ অংশ সাবমিট করার পর লিখিত প্রশ্নের লিংক পেয়ে যাবে। নির্ধারিত সময়ের মধ্যেই সঠিক ফরম্যাটে লিখিত খাতা Turn in করতে হবে।</li>
+            </ul>
+
+            <h3>📊 বিষয় ও মানবণ্টন:</h3>
+            <ul>
+                <li><strong>বাংলা:</strong> ১ × ১৫ = ১৫ (পাশ নম্বর: ৫)</li>
+                <li><strong>English:</strong> 1 × 15 = 15 (Pass marks: 5)</li>
+                <li><strong>সাধারণ জ্ঞান:</strong> ১ × ৩০ = ৩০ (পাশ মার্ক: ৮)</li>
+                <li><strong>সর্বমোট:</strong> ১ × ৬০ = ৬০ (পাশ মার্ক: ২৪)</li>
+                <li><strong>নেগেটিভ মার্কিং:</strong> প্রতি ভুল উত্তরের জন্য <strong>০.২৫</strong> নম্বর কাটা যাবে। সময়: <strong>৪৫ মিনিট</strong>।</li>
+            </ul>
+
+            <div class="notice-badge">
+                ⚠️ বি.দ্র.: একজন পরীক্ষার্থী একবারই পরীক্ষা দিতে পারবেন। একাধিকবার সাবমিট করলে উত্তরপত্র বাতিল করা হবে। তাই পূর্ণ প্রস্তুতি নিয়ে পরীক্ষা শুরু করুন।
+            </div>
+        </div>
 
         <form id="entry-form" onsubmit="event.preventDefault(); startExam();">
             <div class="form-grid text-left">
                 <div class="form-group">
-                    <label>শিক্ষার্থীর নাম *</label>
-                    <input type="text" id="stu-name" placeholder="আপনার পূর্ণ নাম" required>
+                    <label>শিক্ষার্থীর পূর্ণ নাম *</label>
+                    <input type="text" id="stu-name" placeholder="আপনার পূর্ণ নাম লিখুন" required>
                 </div>
                 <div class="form-group">
-                    <label>রোল বা কোড *</label>
-                    <input type="text" id="stu-roll" placeholder="রোল/কোড নম্বর" required>
+                    <label>শিক্ষার্থীর কোড * (যেমন: 63 Sakib)</label>
+                    <input type="text" id="stu-roll" placeholder="কোড নং না থাকলে নিকনেম দিন" required>
                 </div>
-                <div class="form-group">
-                    <label>মোবাইল নম্বর (ঐচ্ছিক)</label>
-                    <input type="text" id="stu-mobile" placeholder="01XXXXXXXXX">
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label>মোবাইলের শেষ ৪ ডিজিট *</label>
+                    <input type="text" id="stu-mobile" maxlength="4" pattern="[0-9]{4}" placeholder="যেমন: 4589" required>
                 </div>
-                <div class="form-group">
-                    <label>ইমেইল (ঐচ্ছিক)</label>
-                    <input type="email" id="stu-email" placeholder="example@mail.com">
-                </div>
-          </div> <!-- form-grid এখানে শেষ হবে -->
+            </div>
 
-    <!-- নিয়মকানুনের বক্সটি গ্রিড থেকে বের করে এখানে নিচে বসানো হয়েছে -->
-    <div class="rules-box">
-        <strong>পরীক্ষা দেওয়ার সকল নিয়মকানুন:</strong><br>
-        • মোট সময়: ৩০ মিনিট।<br>
-        • প্রতিটি সঠিক উত্তরের জন্য ১ নম্বর এবং ভুল উত্তরের জন্য ০.২৫ নম্বর কাটা যাবে।<br>
-        • বাংলা (পাশ: ৫), ইংরেজি (পাশ: ৫), সাধারণ জ্ঞান (পাশ: ৮)।<br>
-        • নিচের ফর্মে আপনার সঠিক তথ্য দিন। <i>সম্মতি প্রদান করলেই কেবল 'Enter' বাটনে ক্লিক করুন।</i>
-    </div>
-            <button type="submit" class="btn-primary" style="margin-top: 25px;">Enter (পরীক্ষা শুরু করুন)</button>
+            <!-- সম্মতি চেকবক্স -->
+            <label class="consent-container">
+                <input type="checkbox" id="consent-check" required>
+                <span>আমি সকল নিয়মকানুন পড়েছি, বুঝেছি এবং সম্মত হয়ে পরীক্ষায় অংশগ্রহণ করছি।</span>
+            </label>
+
+            <button type="submit" class="btn-primary">Enter (পরীক্ষা শুরু করুন)</button>
         </form>
     </div>
 
@@ -342,10 +447,10 @@
     <div id="exam-screen" class="hidden">
         <div class="top-bar">
             <div class="student-info">
-                <strong><span id="display-name"></span></strong> (রোল: <span id="display-roll"></span>)<br>
-                <span style="color: var(--secondary); font-size: 13px;">DU B Model Test 01 | Topic: All</span>
+                <strong><span id="display-name"></span></strong> (<span id="display-roll"></span>)<br>
+                <span style="color: var(--secondary); font-size: 13px;">DU B Weekly Model Test 01</span>
             </div>
-            <div class="timer-box" id="timer">30:00</div>
+            <div class="timer-box" id="timer">45:00</div>
             <div>
                 <button class="btn-small" onclick="checkAndSubmit()">Submit</button>
             </div>
@@ -368,7 +473,6 @@
             <div style="font-size: 32px; font-weight: bold;" id="total-score-display">0.00</div>
             <div style="font-size: 18px; margin-top: 5px;" id="total-status-display"></div>
             
-            <!-- মোটের বিস্তারিত হিসাব -->
             <div class="total-details-grid">
                 <div>✔️ সঠিক: <b id="total-correct-display">0</b></div>
                 <div>❌ ভুল: <b id="total-wrong-display">0</b></div>
@@ -376,11 +480,16 @@
             </div>
         </div>
 
+        <!-- হাইলাইটেড লিখিত প্রশ্ন বাটন -->
+        <a href="https://drive.google.com/file/d/1WYGhPDYHnPf1NWx0oXc2OwAORqkkTF4Y/view" target="_blank" class="btn-written">
+            📝 লিখিত প্রশ্ন দেখুন (PDF)
+        </a>
+
         <div class="social-links">
-            <h3 style="font-size: 16px; margin-bottom: 15px;">আমাদের সাথে যুক্ত হোন</h3>
-            <a href="#" class="www.facebook.com/tanvirtarif.learn">📘 Facebook Page</a>
-            <a href="#" class="www.facebook.com/groups/projcetconsistency">👥 Facebook Group</a>
-            <a href="#" class="www.youtube.com/@withTanvirTarif">📺 YouTube Channel</a>
+            <h3 style="font-size: 16px; margin-bottom: 15px;">আমাদের সাথে যুক্ত থাকুন</h3>
+            <a href="https://www.facebook.com/tanvirtarif.learn" target="_blank" class="link-btn">📘 Facebook Page</a>
+            <a href="https://www.facebook.com/groups/projectconsistency" target="_blank" class="link-btn">👥 Facebook Group</a>
+            <a href="https://www.youtube.com/@withTanvirTarif" target="_blank" class="link-btn">📺 YouTube Channel</a>
         </div>
 
         <button class="btn-primary" onclick="showReviewScreen()">উত্তর ও ব্যাখ্যা দেখুন</button>
@@ -389,11 +498,12 @@
 </div>
 
 <script>
-    // 🔗 গুগল অ্যাপস স্ক্রিপ্ট লিংক
+    // 🔗 গুগল অ্যাপস স্ক্রিপ্ট ও লিখিত ড্রাইভ লিংক
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw-Moo1UqtiC5dsuOyLeZkmODXIuCgVM1iFRSF5PqFyNusKaBwiJ6a5XRdID-0EZP1z/exec";
-    const TEST_NAME = "DU B Model Test 01";
+    const WRITTEN_DRIVE_URL = "https://drive.google.com/file/d/1WYGhPDYHnPf1NWx0oXc2OwAORqkkTF4Y/view";
+    const TEST_NAME = "DU B Weekly Model Test 01";
 
-    // 🔴 IP Address collection with 2-second timeout (স্মুথ লোডিং নিশ্চিত করতে)
+    // 🔴 IP Address collection
     let userIP = "Unknown";
     const deviceInfo = navigator.userAgent;
 
@@ -413,7 +523,7 @@
             passMark: 5,
             questions: [
                 { q: "‘অগ্নি’ শব্দের সমার্থক শব্দ কোনটি?", options: ["অনল", "পবন", "সাগর", "গিরি"], ans: 0, exp: "অগ্নি এর সমার্থক শব্দ অনল, দহন, বহ্নি ইত্যাদি।" },
-                { q: "‘যা পূর্বে ছিল এখন নেই’ - এক কথায় কী হবে?", options: ["অভূতপূর্ব", "ভূতপূর্ব", "পূর্বজ", "অদৃষ্টপূর্ব"], ans: 1, exp: "সঠিক উত্তর ভূতপূর্ব।" },
+                { q: "‘যা পূর্বে ছিল এখন নেই’ - এক কথায় কী হবে?", options: ["অভূতপূর্ব", "ভূতপূর্ব", "পূর্বজ", "অদৃষ্টপূর্ব"], ans: 1, exp: "সঠিক উত্তর ভূতপূর্ব।" },
                 { q: "সন্ধি বিচ্ছেদ করুন: ‘বিদ্যালয়’", options: ["বিদ্য + আলয়", "বিদ্যা + আলয়", "বিদ্য + লয়", "বিদ্যা + লয়"], ans: 1, exp: "বিদ্যা + আলয় = বিদ্যালয় (স্বরসন্ধি)।" }
             ]
         },
@@ -440,10 +550,10 @@
     ];
 
     let timerInterval;
-    let totalTime = 30 * 60;
+    let totalTime = 45 * 60; // ৪৫ মিনিট
     let hasSubmitted = false;
     let studentData = {};
-    let sectionStats = {}; // সেকশন ভিত্তিক পরিসংখ্যান
+    let sectionStats = {};
 
     const optionLetters = ['A', 'B', 'C', 'D'];
 
@@ -454,7 +564,6 @@
         }
     }
 
-    // গুগল শিট থেকে প্রশ্ন লোড করার ফাংশন
     async function fetchQuestionsFromGoogleSheet() {
         if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("YOUR_GOOGLE")) return;
 
@@ -469,17 +578,22 @@
                 });
             }
         } catch (e) {
-            console.log("গুগল শিট থেকে প্রশ্ন লোড হয়নি, ব্যাকআপ প্রশ্ন ব্যবহৃত হচ্ছে।");
+            console.log("ব্যাকআপ প্রশ্ন ব্যবহৃত হচ্ছে।");
         }
     }
 
     window.addEventListener('DOMContentLoaded', fetchQuestionsFromGoogleSheet);
 
     function startExam() {
+        const consent = document.getElementById('consent-check').checked;
+        if (!consent) {
+            alert('পরীক্ষা শুরু করার আগে অবশ্যই নিয়মকানুন পড়ে সম্মতি দিতে হবে।');
+            return;
+        }
+
         studentData.name = document.getElementById('stu-name').value.trim();
         studentData.roll = document.getElementById('stu-roll').value.trim();
         studentData.mobile = document.getElementById('stu-mobile').value.trim();
-        studentData.email = document.getElementById('stu-email').value.trim();
 
         document.getElementById('display-name').innerText = studentData.name;
         document.getElementById('display-roll').innerText = studentData.roll;
@@ -491,6 +605,7 @@
 
         renderQuestions();
         startTimer();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function renderQuestions() {
@@ -543,7 +658,7 @@
             if (totalTime <= 0) {
                 clearInterval(timerInterval);
                 if (!hasSubmitted) {
-                    alert('সময় শেষ! খাতা স্বয়ংক্রিয়ভাবে জমা নেওয়া হচ্ছে।');
+                    alert('সময় শেষ! আপনার উত্তরপত্র স্বয়ংক্রিয়ভাবে জমা নেওয়া হচ্ছে।');
                     processSubmission();
                 }
             }
@@ -561,14 +676,14 @@
         
         let totalQ = 0;
         examData.forEach(s => totalQ += s.questions.length);
-        
         const answered = document.querySelectorAll('input[type="radio"]:checked').length;
         
-        if (answered < totalQ) {
-            const confirmSubmit = confirm(`আপনি ${totalQ} টি প্রশ্নের মধ্যে মাত্র ${answered} টির উত্তর দিয়েছেন। আপনি কি চূড়ান্ত সাবমিট করতে চান?`);
-            if (!confirmSubmit) return;
+        let msg = `আপনি ${totalQ} টি প্রশ্নের মধ্যে ${answered} টির উত্তর দিয়েছেন।\n\nসতর্কতা: একবার ফাইনাল সাবমিট করলে আর কোনো উত্তর পরিবর্তন বা পুনরায় পরীক্ষা দেওয়ার সুযোগ থাকবে না।\n\nআপনি কি নিশ্চিতভাবে সাবমিট করতে চান?`;
+
+        const confirmSubmit = confirm(msg);
+        if (confirmSubmit) {
+            processSubmission();
         }
-        processSubmission();
     }
 
     function processSubmission() {
@@ -611,7 +726,6 @@
 
             const sectionScore = (correctCount * 1) - (wrongCount * 0.25);
             
-            // সেকশনের পরিসংখ্যান সেভ
             sectionStats[section.id] = {
                 score: sectionScore,
                 correct: correctCount,
@@ -626,14 +740,13 @@
             grandUnattempted += unattemptedCount;
         });
 
-        // 🔴 গুগল শিটে ফলাফল ও আইপি পাঠানো
-       // 🔴 গুগল শিটে বিস্তারিত স্কোর পাঠানো
+        // 🔴 গুগল শিটে ডেটা প্রেরণ (মোবাইলের শেষ ৪ ডিজিট ও ইমেইল ছাড়া)
         if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes("YOUR_GOOGLE")) {
             const ban = sectionStats['bangla'] || { correct: 0, wrong: 0, score: 0 };
             const eng = sectionStats['english'] || { correct: 0, wrong: 0, score: 0 };
             const gk = sectionStats['gk'] || { correct: 0, wrong: 0, score: 0 };
 
-            const sendUrl = `${GOOGLE_SCRIPT_URL}?testName=${encodeURIComponent(TEST_NAME)}&name=${encodeURIComponent(studentData.name)}&roll=${encodeURIComponent(studentData.roll)}&mobile=${encodeURIComponent(studentData.mobile)}&email=${encodeURIComponent(studentData.email)}&banRight=${ban.correct}&banWrong=${ban.wrong}&banScore=${ban.score.toFixed(2)}&engRight=${eng.correct}&engWrong=${eng.wrong}&engScore=${eng.score.toFixed(2)}&gkRight=${gk.correct}&gkWrong=${gk.wrong}&gkScore=${gk.score.toFixed(2)}&totalRight=${grandCorrect}&totalWrong=${grandWrong}&totalScore=${totalScoreAll.toFixed(2)}&ip=${encodeURIComponent(userIP)}`;
+            const sendUrl = `${GOOGLE_SCRIPT_URL}?testName=${encodeURIComponent(TEST_NAME)}&name=${encodeURIComponent(studentData.name)}&roll=${encodeURIComponent(studentData.roll)}&mobile=${encodeURIComponent(studentData.mobile)}&banRight=${ban.correct}&banWrong=${ban.wrong}&banScore=${ban.score.toFixed(2)}&engRight=${eng.correct}&engWrong=${eng.wrong}&engScore=${eng.score.toFixed(2)}&gkRight=${gk.correct}&gkWrong=${gk.wrong}&gkScore=${gk.score.toFixed(2)}&totalRight=${grandCorrect}&totalWrong=${grandWrong}&totalScore=${totalScoreAll.toFixed(2)}&ip=${encodeURIComponent(userIP)}`;
 
             fetch(sendUrl, { method: 'POST', mode: 'no-cors' });
         }
@@ -646,7 +759,7 @@
         const summaryScreen = document.getElementById('result-summary-screen');
         summaryScreen.classList.remove('hidden');
 
-        document.getElementById('res-name').innerText = `${studentData.name} (রোল: ${studentData.roll})`;
+        document.getElementById('res-name').innerText = `${studentData.name} (কোড: ${studentData.roll})`;
 
         const container = document.getElementById('section-results-container');
         let html = '';
@@ -674,17 +787,18 @@
         });
         container.innerHTML = html;
 
-        // মোটের বিস্তারিত অংশ আপডেট
-        document.getElementById('total-score-display').innerText = `${totalScore.toFixed(2)}`;
+        document.getElementById('total-score-display').innerText = `${totalScore.toFixed(2)} / 60`;
         document.getElementById('total-correct-display').innerText = `${grandCorrect}`;
         document.getElementById('total-wrong-display').innerText = `${grandWrong}`;
         document.getElementById('total-unattempted-display').innerText = `${grandUnattempted}`;
 
         const totalStatus = document.getElementById('total-status-display');
-        if(allPassed) {
-            totalStatus.innerText = "🎉 অভিনন্দন! আপনি সব বিষয়ে পাশ করেছেন।";
+        const overallPass = totalScore >= 24 && allPassed;
+
+        if(overallPass) {
+            totalStatus.innerText = "🎉 অভিনন্দন! আপনি পরীক্ষায় উত্তীর্ণ হয়েছেন।";
         } else {
-            totalStatus.innerText = "⚠️ আপনি এক বা একাধিক বিষয়ে ফেল করেছেন।";
+            totalStatus.innerText = "⚠️ দুঃখিত! আপনি নির্ধারিত পাশ মার্ক অর্জন করতে পারেননি।";
             totalStatus.style.color = "#fecaca";
         }
 
@@ -701,10 +815,17 @@
         const oldSubmit = examScreen.querySelector('.btn-primary');
         if(oldSubmit) oldSubmit.remove();
 
+        const writtenBtn = document.createElement('a');
+        writtenBtn.className = 'btn-written';
+        writtenBtn.href = WRITTEN_DRIVE_URL;
+        writtenBtn.target = '_blank';
+        writtenBtn.innerText = '📝 লিখিত প্রশ্ন দেখুন (PDF)';
+        examScreen.appendChild(writtenBtn);
+
         const retakeBtn = document.createElement('button');
         retakeBtn.className = 'btn-primary';
         retakeBtn.style.marginBottom = '50px';
-        retakeBtn.innerText = '🔄 পুনরায় এক্সাম দিন';
+        retakeBtn.innerText = '🔄 পুনরায় এক্সাম পেইজে যান';
         retakeBtn.onclick = () => location.reload();
         
         examScreen.appendChild(retakeBtn);
