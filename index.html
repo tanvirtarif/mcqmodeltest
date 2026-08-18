@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DU B Weekly Model Test 01 - TEST MISSION</title>
+    <title>Project Consistency <br> Weekly Model Test 01 - TEST MISSION</title>
     <!-- Hind Siliguri Font -->
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -390,8 +390,8 @@
     <div id="start-screen" class="card text-center">
         <img src="banner.png" alt="Exam Banner" class="banner-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'200\'><rect width=\'800\' height=\'200\' fill=\'%23e2e8f0\'/><text x=\'50%\' y=\'50%\' font-size=\'24\' fill=\'%2364748b\' text-anchor=\'middle\' dominant-baseline=\'middle\'>Banner Placeholder (Upload banner.png)</text></svg>'">
         
-        <h1 class="main-title">TEST MISSION Exclusive Exam Batch by TanvirTarif</h1>
-        <h2 class="sub-title">DU B Weekly Model Test 01</h2>
+        <h1 class="main-title">Project COnsistency</h1>
+        <h2 class="sub-title">Weekly Model Test 01 (MCQ Part)</h2>
 
         <!-- নিয়মাবলী ও মানবণ্টন -->
         <div class="rules-box">
@@ -399,15 +399,15 @@
             <ul>
                 <li>নিজ দায়িত্বে পরীক্ষার পরিবেশ তৈরি করে গুরুত্ব সহকারে পরীক্ষা দিতে হবে।</li>
                 <li>বই, গাইড, ইন্টারনেট বা অন্য কোনো রিসোর্সের হেল্প নেওয়া যাবে না এবং কোনো ধরণের অসদুপায় অবলম্বন করা যাবে না।</li>
-                <li>MCQ এক্সামের এন্ট্রি ফর্মে সঠিক ফরম্যাটে নিজের কোড দিতে হবে। কোড নং না পেয়ে থাকলে শুধু নিকনেম ব্যবহার করবে। (কোড ফরম্যাট 👉 <code>63 Sakib</code>)</li>
-                <li>MCQ অংশ সাবমিট করার পর লিখিত প্রশ্নের লিংক পেয়ে যাবে। নির্ধারিত সময়ের মধ্যেই সঠিক ফরম্যাটে লিখিত খাতা Turn in করতে হবে।</li>
+                <li>এন্ট্রি ফর্মে সঠিক ফরম্যাটে নিজের কোড দিতে হবে। কোড নং না পেয়ে থাকলে শুধু নিকনেম ব্যবহার করবে। (কোড ফরম্যাট: <b>63 Sakib</b>)</li>
+                <li>MCQ অংশ সাবমিট করার পর লিখিত প্রশ্নের লিংক পেয়ে যাবে। নির্ধারিত সময়ের মধ্যে সঠিক ফরম্যাটে লিখিত খাতা Turn in করতে হবে।</li>
             </ul>
 
             <h3>📊 বিষয় ও মানবণ্টন:</h3>
             <ul>
                 <li><strong>বাংলা:</strong> ১ × ১৫ = ১৫ (পাশ নম্বর: ৫)</li>
                 <li><strong>English:</strong> 1 × 15 = 15 (Pass marks: 5)</li>
-                <li><strong>সাধারণ জ্ঞান:</strong> ১ × ৩০ = ৩০ (পাশ মার্ক: ৮)</li>
+                <li><strong>সাধারণ জ্ঞান:</strong> ১ × ৩০ = ৩০ (পাশ মার্ক: ১০)</li>
                 <li><strong>সর্বমোট:</strong> ১ × ৬০ = ৬০ (পাশ মার্ক: ২৪)</li>
                 <li><strong>নেগেটিভ মার্কিং:</strong> প্রতি ভুল উত্তরের জন্য <strong>০.২৫</strong> নম্বর কাটা যাবে। সময়: <strong>৪৫ মিনিট</strong>।</li>
             </ul>
@@ -420,15 +420,15 @@
         <form id="entry-form" onsubmit="event.preventDefault(); startExam();">
             <div class="form-grid text-left">
                 <div class="form-group">
-                    <label>শিক্ষার্থীর পূর্ণ নাম *</label>
-                    <input type="text" id="stu-name" placeholder="আপনার পূর্ণ নাম লিখুন" required>
+                    <label>Your Full Name *</label>
+                    <input type="text" id="stu-name" placeholder="যেমন: Abdullah Mahmud" required>
                 </div>
                 <div class="form-group">
-                    <label>শিক্ষার্থীর কোড * (যেমন: 63 Sakib)</label>
-                    <input type="text" id="stu-roll" placeholder="কোড নং না থাকলে নিকনেম দিন" required>
+                    <label>Your Code *</label>
+                    <input type="text" id="stu-roll" placeholder="যেমন: 63 Sakib" required>
                 </div>
                 <div class="form-group" style="grid-column: 1 / -1;">
-                    <label>মোবাইলের শেষ ৪ ডিজিট *</label>
+                    <label>মোবাইল নাম্বারের শেষ চার ডিজিট *</label>
                     <input type="text" id="stu-mobile" maxlength="4" pattern="[0-9]{4}" placeholder="যেমন: 4589" required>
                 </div>
             </div>
@@ -436,7 +436,7 @@
             <!-- সম্মতি চেকবক্স -->
             <label class="consent-container">
                 <input type="checkbox" id="consent-check" required>
-                <span>আমি সকল নিয়মকানুন পড়েছি, বুঝেছি এবং সম্মত হয়ে পরীক্ষায় অংশগ্রহণ করছি।</span>
+                <span>আমি সকল নিয়মকানুনের সাথে সম্মত হয়ে পরীক্ষায় অংশগ্রহণ করছি।</span>
             </label>
 
             <button type="submit" class="btn-primary">Enter (পরীক্ষা শুরু করুন)</button>
@@ -448,7 +448,7 @@
         <div class="top-bar">
             <div class="student-info">
                 <strong><span id="display-name"></span></strong> (<span id="display-roll"></span>)<br>
-                <span style="color: var(--secondary); font-size: 13px;">DU B Weekly Model Test 01</span>
+                <span style="color: var(--secondary); font-size: 13px;">Weekly Model Test 01 ©<b>Project Consistency</b></span>
             </div>
             <div class="timer-box" id="timer">45:00</div>
             <div>
@@ -482,7 +482,7 @@
 
         <!-- হাইলাইটেড লিখিত প্রশ্ন বাটন -->
         <a href="https://drive.google.com/file/d/1WYGhPDYHnPf1NWx0oXc2OwAORqkkTF4Y/view" target="_blank" class="btn-written">
-            📝 লিখিত প্রশ্ন দেখুন (PDF)
+            📝 লিখিত অংশের প্রশ্ন দেখুন
         </a>
 
         <div class="social-links">
