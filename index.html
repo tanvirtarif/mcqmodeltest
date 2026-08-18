@@ -498,24 +498,25 @@
 </div>
 
 <script>
-    // 🔗 গুগল অ্যাপস স্ক্রিপ্ট ও লিখিত ড্রাইভ লিংক
+    // 🔗 লিঙ্কসমূহ
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw-Moo1UqtiC5dsuOyLeZkmODXIuCgVM1iFRSF5PqFyNusKaBwiJ6a5XRdID-0EZP1z/exec";
     const WRITTEN_DRIVE_URL = "https://drive.google.com/file/d/1WYGhPDYHnPf1NWx0oXc2OwAORqkkTF4Y/view";
     const TEST_NAME = "DU B Weekly Model Test 01";
 
-    // 🔴 IP Address collection
     let userIP = "Unknown";
     const deviceInfo = navigator.userAgent;
 
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 2000);
+    // IP ফেচ করার সেফ রিকোয়েস্ট
+    try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 2000);
+        fetch('https://api.ipify.org?format=json', { signal: controller.signal })
+            .then(res => res.json())
+            .then(data => { userIP = data.ip; clearTimeout(timeoutId); })
+            .catch(() => { userIP = "Unavailable"; });
+    } catch(e) { userIP = "Unavailable"; }
 
-    fetch('https://api.ipify.org?format=json', { signal: controller.signal })
-        .then(res => res.json())
-        .then(data => { userIP = data.ip; clearTimeout(timeoutId); })
-        .catch(() => { userIP = "Unavailable"; });
-
-    // ডিফল্ট এক্সাম ডেটা
+    // ডিফল্ট ব্যাকআপ প্রশ্ন
     let examData = [
         {
             id: "bangla",
@@ -550,7 +551,7 @@
     ];
 
     let timerInterval;
-    let totalTime = 45 * 60; // ৪৫ মিনিট
+    let totalTime = 45 * 60;
     let hasSubmitted = false;
     let studentData = {};
     let sectionStats = {};
@@ -574,11 +575,17 @@
             if (Array.isArray(fetchedQuestions) && fetchedQuestions.length > 0) {
                 examData.forEach(section => {
                     const sectionQs = fetchedQuestions.filter(q => q.sectionId === section.id);
-                    if (sectionQs.length > 0) section.questions = sectionQs;
+                    if (sectionQs.length > 0) {
+                        sectionQs.forEach(q => {
+                            // ans ইনডেক্স নিশ্চিতভাবে নাম্বারে কনভার্ট করা
+                            q.ans = parseInt(q.ans);
+                        });
+                        section.questions = sectionQs;
+                    }
                 });
             }
         } catch (e) {
-            console.log("ব্যাকআপ প্রশ্ন ব্যবহৃত হচ্ছে।");
+            console.log("গুগল শিট থেকে প্রশ্ন লোড হয়নি, ব্যাকআপ প্রশ্ন ব্যবহৃত হচ্ছে।");
         }
     }
 
@@ -617,18 +624,22 @@
             html += `<div class="section-header">${section.name} অংশ</div>`;
             
             section.questions.forEach((q, i) => {
+                const correctAnsIdx = parseInt(q.ans);
+                const correctAnsText = (q.options && q.options[correctAnsIdx]) ? q.options[correctAnsIdx] : '';
+                const correctLetter = optionLetters[correctAnsIdx] || '';
+
                 html += `
                     <div class="question-card" id="q-card-${globalQIndex}">
                         <div class="question-title">${i + 1}. ${q.q}</div>
                         <ul class="options-list">
                 `;
                 
-                q.options.forEach((opt, oIndex) => {
+                (q.options || []).forEach((opt, oIndex) => {
                     html += `
                         <li>
                             <label class="option-label" id="label-${globalQIndex}-${oIndex}">
                                 <input type="radio" name="${section.id}_q${i}" value="${oIndex}" data-global-idx="${globalQIndex}">
-                                <strong style="margin-right:10px;">${optionLetters[oIndex]}.</strong> ${opt}
+                                <strong style="margin-right:10px;">${optionLetters[oIndex] || ''}.</strong> ${opt}
                             </label>
                         </li>
                     `;
@@ -637,8 +648,8 @@
                 html += `
                         </ul>
                         <div class="explanation" id="exp-${globalQIndex}">
-                            <strong>সঠিক উত্তর:</strong> ${optionLetters[q.ans]}. ${q.options[q.ans]}<br><br>
-                            <strong>ব্যাখ্যা:</strong> ${q.exp}
+                            <strong>সঠিক উত্তর:</strong> ${correctLetter}. ${correctAnsText}<br><br>
+                            <strong>ব্যাখ্যা:</strong> ${q.exp || 'কোনো ব্যাখ্যা নেই।'}
                         </div>
                     </div>
                 `;
@@ -675,7 +686,7 @@
         if (hasSubmitted) return;
         
         let totalQ = 0;
-        examData.forEach(s => totalQ += s.questions.length);
+        examData.forEach(s => totalQ += (s.questions ? s.questions.length : 0));
         const answered = document.querySelectorAll('input[type="radio"]:checked').length;
         
         let msg = `আপনি ${totalQ} টি প্রশ্নের মধ্যে ${answered} টির উত্তর দিয়েছেন।\n\nসতর্কতা: একবার ফাইনাল সাবমিট করলে আর কোনো উত্তর পরিবর্তন বা পুনরায় পরীক্ষা দেওয়ার সুযোগ থাকবে না।\n\nআপনি কি নিশ্চিতভাবে সাবমিট করতে চান?`;
@@ -687,6 +698,7 @@
     }
 
     function processSubmission() {
+        if (hasSubmitted) return;
         hasSubmitted = true;
         clearInterval(timerInterval);
 
@@ -697,60 +709,79 @@
         let grandWrong = 0;
         let grandUnattempted = 0;
 
-        examData.forEach(section => {
-            let correctCount = 0;
-            let wrongCount = 0;
-            let unattemptedCount = 0;
+        try {
+            examData.forEach(section => {
+                let correctCount = 0;
+                let wrongCount = 0;
+                let unattemptedCount = 0;
 
-            section.questions.forEach((q, i) => {
-                const selected = document.querySelector(`input[name="${section.id}_q${i}"]:checked`);
-                
-                document.getElementById(`label-${globalQIndex}-${q.ans}`).classList.add('correct-answer');
-                document.getElementById(`exp-${globalQIndex}`).style.display = 'block';
-
-                if (selected) {
-                    const selectedVal = parseInt(selected.value);
-                    if (selectedVal === q.ans) {
-                        correctCount++;
-                    } else {
-                        wrongCount++;
-                        document.getElementById(`label-${globalQIndex}-${selectedVal}`).classList.add('wrong-answer');
+                (section.questions || []).forEach((q, i) => {
+                    const selected = document.querySelector(`input[name="${section.id}_q${i}"]:checked`);
+                    const correctIdx = parseInt(q.ans);
+                    
+                    // সেফ নাল চেকিং সহ সঠিক উত্তরের হাইলাইট
+                    const correctLabel = document.getElementById(`label-${globalQIndex}-${correctIdx}`);
+                    if (correctLabel) {
+                        correctLabel.classList.add('correct-answer');
                     }
-                } else {
-                    unattemptedCount++;
-                }
 
-                document.querySelectorAll(`input[name="${section.id}_q${i}"]`).forEach(r => r.disabled = true);
-                globalQIndex++;
+                    const expBox = document.getElementById(`exp-${globalQIndex}`);
+                    if (expBox) {
+                        expBox.style.display = 'block';
+                    }
+
+                    if (selected) {
+                        const selectedVal = parseInt(selected.value);
+                        if (selectedVal === correctIdx) {
+                            correctCount++;
+                        } else {
+                            wrongCount++;
+                            const wrongLabel = document.getElementById(`label-${globalQIndex}-${selectedVal}`);
+                            if (wrongLabel) {
+                                wrongLabel.classList.add('wrong-answer');
+                            }
+                        }
+                    } else {
+                        unattemptedCount++;
+                    }
+
+                    document.querySelectorAll(`input[name="${section.id}_q${i}"]`).forEach(r => r.disabled = true);
+                    globalQIndex++;
+                });
+
+                const sectionScore = (correctCount * 1) - (wrongCount * 0.25);
+                
+                sectionStats[section.id] = {
+                    score: sectionScore,
+                    correct: correctCount,
+                    wrong: wrongCount,
+                    unattempted: unattemptedCount,
+                    total: section.questions ? section.questions.length : 0
+                };
+
+                totalScoreAll += sectionScore;
+                grandCorrect += correctCount;
+                grandWrong += wrongCount;
+                grandUnattempted += unattemptedCount;
             });
-
-            const sectionScore = (correctCount * 1) - (wrongCount * 0.25);
-            
-            sectionStats[section.id] = {
-                score: sectionScore,
-                correct: correctCount,
-                wrong: wrongCount,
-                unattempted: unattemptedCount,
-                total: section.questions.length
-            };
-
-            totalScoreAll += sectionScore;
-            grandCorrect += correctCount;
-            grandWrong += wrongCount;
-            grandUnattempted += unattemptedCount;
-        });
-
-        // 🔴 গুগল শিটে ডেটা প্রেরণ (মোবাইলের শেষ ৪ ডিজিট ও ইমেইল ছাড়া)
-        if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes("YOUR_GOOGLE")) {
-            const ban = sectionStats['bangla'] || { correct: 0, wrong: 0, score: 0 };
-            const eng = sectionStats['english'] || { correct: 0, wrong: 0, score: 0 };
-            const gk = sectionStats['gk'] || { correct: 0, wrong: 0, score: 0 };
-
-            const sendUrl = `${GOOGLE_SCRIPT_URL}?testName=${encodeURIComponent(TEST_NAME)}&name=${encodeURIComponent(studentData.name)}&roll=${encodeURIComponent(studentData.roll)}&mobile=${encodeURIComponent(studentData.mobile)}&banRight=${ban.correct}&banWrong=${ban.wrong}&banScore=${ban.score.toFixed(2)}&engRight=${eng.correct}&engWrong=${eng.wrong}&engScore=${eng.score.toFixed(2)}&gkRight=${gk.correct}&gkWrong=${gk.wrong}&gkScore=${gk.score.toFixed(2)}&totalRight=${grandCorrect}&totalWrong=${grandWrong}&totalScore=${totalScoreAll.toFixed(2)}&ip=${encodeURIComponent(userIP)}`;
-
-            fetch(sendUrl, { method: 'POST', mode: 'no-cors' });
+        } catch (err) {
+            console.error("Score calculation error: ", err);
         }
 
+        // 🔴 গুগল শিটে ডেটা পাঠানো (ব্যাকগ্রাউন্ডে ফায়ার হবে, পেজ লোড আটকাবে না)
+        try {
+            if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes("YOUR_GOOGLE")) {
+                const ban = sectionStats['bangla'] || { correct: 0, wrong: 0, score: 0 };
+                const eng = sectionStats['english'] || { correct: 0, wrong: 0, score: 0 };
+                const gk = sectionStats['gk'] || { correct: 0, wrong: 0, score: 0 };
+
+                const sendUrl = `${GOOGLE_SCRIPT_URL}?testName=${encodeURIComponent(TEST_NAME)}&name=${encodeURIComponent(studentData.name || '')}&roll=${encodeURIComponent(studentData.roll || '')}&mobile=${encodeURIComponent(studentData.mobile || '')}&banRight=${ban.correct}&banWrong=${ban.wrong}&banScore=${ban.score.toFixed(2)}&engRight=${eng.correct}&engWrong=${eng.wrong}&engScore=${eng.score.toFixed(2)}&gkRight=${gk.correct}&gkWrong=${gk.wrong}&gkScore=${gk.score.toFixed(2)}&totalRight=${grandCorrect}&totalWrong=${grandWrong}&totalScore=${totalScoreAll.toFixed(2)}&ip=${encodeURIComponent(userIP)}`;
+
+                fetch(sendUrl, { method: 'POST', mode: 'no-cors' }).catch(() => {});
+            }
+        } catch(e) {}
+
+        // নিশ্চিতভাবে রেজাল্ট পেইজ দেখানো
         generateResultSummary(totalScoreAll, grandCorrect, grandWrong, grandUnattempted);
     }
 
@@ -759,7 +790,7 @@
         const summaryScreen = document.getElementById('result-summary-screen');
         summaryScreen.classList.remove('hidden');
 
-        document.getElementById('res-name').innerText = `${studentData.name} (কোড: ${studentData.roll})`;
+        document.getElementById('res-name').innerText = `${studentData.name || ''} (কোড: ${studentData.roll || ''})`;
 
         const container = document.getElementById('section-results-container');
         let html = '';
@@ -797,6 +828,7 @@
 
         if(overallPass) {
             totalStatus.innerText = "🎉 অভিনন্দন! আপনি পরীক্ষায় উত্তীর্ণ হয়েছেন।";
+            totalStatus.style.color = "#ffffff";
         } else {
             totalStatus.innerText = "⚠️ দুঃখিত! আপনি নির্ধারিত পাশ মার্ক অর্জন করতে পারেননি।";
             totalStatus.style.color = "#fecaca";
@@ -809,7 +841,8 @@
         document.getElementById('result-summary-screen').classList.add('hidden');
         document.getElementById('exam-screen').classList.remove('hidden');
         
-        document.querySelector('.top-bar').style.display = 'none';
+        const topBar = document.querySelector('.top-bar');
+        if (topBar) topBar.style.display = 'none';
         
         const examScreen = document.getElementById('exam-screen');
         const oldSubmit = examScreen.querySelector('.btn-primary');
