@@ -383,15 +383,15 @@
         .option-label input { margin-right: 12px; transform: scale(1.15); flex-shrink: 0; }
         .option-label.locked { cursor: not-allowed; }
 
-        /* সিলেক্ট করা উত্তরের হলুদ রঙ */
-        .selected-answer {
-            background-color: #fef08a !important;
-            border-color: #eab308 !important;
-            color: #854d0e !important;
+        /* সিলেক্ট করার পর হলুদ কালার */
+        .selected-active {
+            background-color: #fef9c3 !important; /* Soft Yellow */
+            border-color: #eab308 !important;     /* Bright Golden Yellow Border */
+            color: #854d0e !important;            /* Dark Amber/Brown Text */
             font-weight: 600;
         }
 
-        /* সাবমিট পরবর্তী সঠিক ও ভুল উত্তর */
+        /* রেজাল্টের সঠিক ও ভুল উত্তরের কালার */
         .correct-answer { background-color: #ecfdf5 !important; border-color: #10b981 !important; color: #047857 !important; font-weight: 600; }
         .wrong-answer { background-color: #fef2f2 !important; border-color: #ef4444 !important; color: #b91c1c !important; }
 
@@ -514,7 +514,7 @@
             <ul>
                 <li>নিজ দায়িত্বে শান্ত পরিবেশ তৈরি করে পূর্ণ সততার সাথে পরীক্ষা সম্পন্ন করতে হবে।</li>
                 <li>বই, নোট, ইন্টারনেট বা অন্য কারো সাহায্য নেওয়া সম্পূর্ণ নিষিদ্ধ।</li>
-                <li><strong>বিশেষ সতর্কবার্তা:</strong> MCQ অংশে <strong>একবার কোনো অপশন নির্বাচন (Select) করে ফেললে তা আর পরিবর্তন করা যাবে না</strong>। তাই নিশ্চিত হয়ে অপশনে ক্লিক করুন।</li>
+                <li><strong>বিশেষ সতর্কবার্তা:</strong> MCQ অংশে <strong>একবার কোনো অপশন নির্বাচন (Select) করে ফেললে তা হলুদ বর্ণ ধারণ করবে এবং লক হয়ে যাবে</strong>; পরবর্তীতে তা আর পরিবর্তন করা যাবে না।</li>
                 <li>MCQ অংশ সাবমিট করার পর রেজাল্ট ও ব্যাখ্যা দেখতে পাবেন এবং সেখান থেকে লিখিত পরীক্ষার লিংক পাওয়া যাবে।</li>
             </ul>
 
@@ -826,7 +826,7 @@
                     html += `
                         <li>
                             <label class="option-label" id="label-${globalQIndex}-${oIndex}">
-                                <input type="radio" name="${section.id}_q${i}" value="${oIndex}" onchange="lockQuestionOption(this, '${section.id}_q${i}', ${globalQIndex}, ${oIndex})">
+                                <input type="radio" name="${section.id}_q${i}" value="${oIndex}" onchange="lockQuestionOption('${section.id}_q${i}', ${globalQIndex}, ${oIndex})">
                                 <strong style="margin-right:8px;">${optionLetters[oIndex] || ''}.</strong> ${opt}
                             </label>
                         </li>
@@ -848,18 +848,19 @@
         container.innerHTML = html;
     }
 
-    // সিলেক্ট করলে অপশন লক ও হলুদ রঙে হাইলাইট করার ফাংশন
-    function lockQuestionOption(inputEl, name, globalIdx, selectedOptIdx) {
+    // একবার সিলেক্ট করলে অপশন লক ও হলুদ হাইলাইট করার ফাংশন
+    function lockQuestionOption(name, globalIdx, selectedIdx) {
         const radios = document.querySelectorAll(`input[name="${name}"]`);
         radios.forEach(radio => {
             radio.disabled = true;
-            radio.closest('.option-label').classList.add('locked');
+            const parentLabel = radio.closest('.option-label');
+            parentLabel.classList.add('locked');
         });
 
-        // সিলেক্টেড অপশনে হলুদ কালারের ক্লাস যোগ করা
-        const selectedLabel = document.getElementById(`label-${globalIdx}-${selectedOptIdx}`);
+        // সিলেক্টেড অপশনে হলুদ কালার অ্যাড করা
+        const selectedLabel = document.getElementById(`label-${globalIdx}-${selectedIdx}`);
         if (selectedLabel) {
-            selectedLabel.classList.add('selected-answer');
+            selectedLabel.classList.add('selected-active');
         }
     }
 
@@ -919,10 +920,12 @@
                 const selected = document.querySelector(`input[name="${section.id}_q${i}"]:checked`);
                 const correctIdx = parseInt(q.ans);
                 
-                // হলুদ কালার সরিয়ে সঠিক/ভুল মার্কিং সেট করা
+                // হলুদ কালার ক্লাস সরানো (যাতে গ্রিন বা রেড প্রোপারলি দৃশ্যমান হয়)
+                const allLabels = document.querySelectorAll(`#q-card-${globalQIndex} .option-label`);
+                allLabels.forEach(l => l.classList.remove('selected-active'));
+
                 const correctLabel = document.getElementById(`label-${globalQIndex}-${correctIdx}`);
                 if (correctLabel) {
-                    correctLabel.classList.remove('selected-answer');
                     correctLabel.classList.add('correct-answer');
                 }
 
@@ -939,7 +942,6 @@
                         wrongCount++;
                         const wrongLabel = document.getElementById(`label-${globalQIndex}-${selectedVal}`);
                         if (wrongLabel) {
-                            wrongLabel.classList.remove('selected-answer');
                             wrongLabel.classList.add('wrong-answer');
                         }
                     }
@@ -1036,7 +1038,7 @@
             if(failedSubjects.length > 0) {
                 failMsg += `আপনি ${failedSubjects.join(' এবং ')} বিষয়ে উত্তীর্ণ হতে পারেননি।`;
             } else {
-                failMsg += "আপনি সর্বমোট পাস মার্ক (২৪) অর্জন করতে পারেননি।";
+                failMsg += "আপনি সর্বমোট পাশ মার্ক (২৪) অর্জন করতে পারেননি।";
             }
             totalStatus.innerText = failMsg;
             totalStatus.style.color = "#fecaca";
@@ -1050,10 +1052,12 @@
         const reviewContainer = document.getElementById('review-questions-container');
         const qContainer = document.getElementById('questions-container');
         
+        // প্রশ্নপত্র ও সমাধান রেজাল্ট পেজের ভেতরেই রেন্ডার করা
         reviewContainer.innerHTML = qContainer.innerHTML;
         reviewWrapper.classList.remove('hidden');
         document.getElementById('review-action-container').classList.add('hidden');
 
+        // স্টিকি হেডার স্বাভাবিক করা যাতে মোবাইল ভিউতে ওভারল্যাপ না করে
         const headers = reviewContainer.querySelectorAll('.section-header');
         headers.forEach(h => {
             h.style.position = 'static';
