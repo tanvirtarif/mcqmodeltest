@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Consistency - Weekly Model Test</title>
-    <!-- Hind Siliguri Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Fonts: Noto Serif Bengali -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --primary: #2563eb;
@@ -19,6 +23,7 @@
             --text-main: #0f172a;
             --text-muted: #64748b;
             --border-color: #e2e8f0;
+            --font-family: 'Noto Serif Bengali', serif;
         }
 
         * {
@@ -26,12 +31,14 @@
         }
 
         body {
-            font-family: 'Hind Siliguri', sans-serif;
+            font-family: var(--font-family);
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            line-height: 1.75;
+            letter-spacing: 0.1px;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
@@ -49,15 +56,15 @@
         .card {
             background: var(--card-bg);
             border-radius: 16px;
-            box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.06);
             padding: 25px 20px;
             margin-bottom: 20px;
             border: 1px solid var(--border-color);
         }
 
         @media (min-width: 640px) {
-            .card { padding: 30px; }
-            .container { padding: 20px; }
+            .card { padding: 32px; }
+            .container { padding: 25px; }
         }
 
         /* Banner & Typography */
@@ -73,15 +80,15 @@
 
         h1.main-title {
             color: var(--primary);
-            font-size: 22px;
-            font-weight: 700;
-            margin: 0 0 5px 0;
-            text-transform: uppercase;
+            font-size: 24px;
+            font-weight: 800;
+            margin: 0 0 6px 0;
+            letter-spacing: 0.5px;
         }
 
         .sub-title { 
-            font-size: 18px; 
-            font-weight: 600; 
+            font-size: 19px; 
+            font-weight: 700; 
             margin: 0 0 15px 0; 
             color: var(--text-main); 
         }
@@ -90,47 +97,48 @@
         .rules-box {
             background: #f8fafc;
             border: 1px solid #cbd5e1;
-            border-left: 4px solid var(--primary);
-            padding: 16px;
-            border-radius: 8px;
-            font-size: 14.5px;
+            border-left: 5px solid var(--primary);
+            padding: 18px;
+            border-radius: 10px;
+            font-size: 15px;
             color: #334155;
-            margin: 15px 0;
+            margin: 18px 0;
             text-align: left;
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
         .rules-box h3 {
-            margin: 0 0 8px 0;
+            margin: 0 0 10px 0;
             color: var(--primary);
-            font-size: 16px;
+            font-size: 17px;
+            font-weight: 700;
         }
 
         .rules-box ul {
-            margin: 5px 0 12px 18px;
+            margin: 6px 0 12px 20px;
             padding: 0;
         }
 
         .rules-box li {
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
         .notice-badge {
             background: #fef2f2;
             border: 1px solid #fecaca;
             color: #b91c1c;
-            padding: 10px 12px;
-            border-radius: 6px;
+            padding: 12px 14px;
+            border-radius: 8px;
             font-weight: 600;
-            font-size: 13.5px;
-            margin-top: 10px;
+            font-size: 14px;
+            margin-top: 12px;
         }
 
         /* Form Inputs */
         .form-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 15px;
+            gap: 16px;
             margin-top: 20px;
         }
 
@@ -142,7 +150,7 @@
 
         .form-group label {
             display: block;
-            font-size: 14px;
+            font-size: 14.5px;
             font-weight: 600;
             margin-bottom: 6px;
             color: var(--secondary);
@@ -150,40 +158,41 @@
 
         .form-group input {
             width: 100%;
-            padding: 12px 14px;
+            padding: 12px 15px;
             border: 1px solid var(--border-color);
             border-radius: 8px;
             font-size: 15px;
-            transition: border-color 0.3s;
+            transition: all 0.25s ease;
             font-family: inherit;
         }
 
         .form-group input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
 
         .consent-container {
             display: flex;
             align-items: flex-start;
-            margin: 20px 0;
-            padding: 14px;
+            margin: 22px 0;
+            padding: 15px;
             background: #eff6ff;
             border: 1px solid #bfdbfe;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             text-align: left;
-            font-size: 14.5px;
+            font-size: 15px;
             font-weight: 600;
             color: var(--text-main);
+            line-height: 1.6;
         }
 
         .consent-container input {
             margin-right: 12px;
-            margin-top: 4px;
-            width: 18px;
-            height: 18px;
+            margin-top: 5px;
+            width: 19px;
+            height: 19px;
             cursor: pointer;
             flex-shrink: 0;
         }
@@ -193,10 +202,10 @@
             background: linear-gradient(135deg, var(--primary), var(--primary-hover));
             color: white;
             border: none;
-            padding: 14px 25px;
+            padding: 14px 26px;
             font-size: 16px;
-            font-weight: 600;
-            border-radius: 8px;
+            font-weight: 700;
+            border-radius: 10px;
             cursor: pointer;
             width: 100%;
             transition: all 0.2s;
@@ -208,7 +217,7 @@
 
         .btn-primary:hover {
             opacity: 0.95;
-            box-shadow: 0 6px 15px -3px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 6px 18px -3px rgba(37, 99, 235, 0.35);
         }
 
         .btn-secondary {
@@ -230,7 +239,7 @@
             background: linear-gradient(135deg, #dc2626, #b91c1c);
             color: #ffffff !important;
             border: 2px solid #ef4444;
-            padding: 20px 20px;
+            padding: 20px;
             border-radius: 14px;
             cursor: pointer;
             width: 100%;
@@ -239,18 +248,19 @@
             text-decoration: none;
             text-align: center;
             margin: 25px 0;
-            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.4);
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.35);
             animation: redPulse 2s infinite;
+            font-family: inherit;
         }
 
         .btn-written-red:hover {
-            transform: scale(1.02);
-            box-shadow: 0 12px 30px rgba(220, 38, 38, 0.6);
+            transform: scale(1.015);
+            box-shadow: 0 12px 30px rgba(220, 38, 38, 0.5);
             background: linear-gradient(135deg, #b91c1c, #991b1b);
         }
 
         .btn-written-red .icon {
-            font-size: 40px;
+            font-size: 38px;
             display: block;
             margin-bottom: 5px;
             line-height: 1;
@@ -268,9 +278,9 @@
             font-size: 14px;
             font-weight: 600;
             display: block;
-            margin-top: 6px;
+            margin-top: 8px;
             background: rgba(0, 0, 0, 0.25);
-            padding: 4px 10px;
+            padding: 4px 14px;
             border-radius: 20px;
             width: fit-content;
             margin-left: auto;
@@ -278,8 +288,8 @@
         }
 
         @keyframes redPulse {
-            0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.6); }
-            70% { box-shadow: 0 0 0 14px rgba(220, 38, 38, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.5); }
+            70% { box-shadow: 0 0 0 12px rgba(220, 38, 38, 0); }
             100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
         }
 
@@ -288,7 +298,7 @@
             color: white;
             border: none;
             padding: 8px 16px;
-            border-radius: 6px;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             font-size: 14px;
@@ -304,7 +314,7 @@
             backdrop-filter: blur(8px);
             padding: 12px 18px;
             border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             position: sticky;
             top: 10px;
             z-index: 100;
@@ -312,15 +322,16 @@
             border: 1px solid var(--border-color);
         }
         
-        .student-info { font-size: 13px; line-height: 1.4; text-align: left; }
+        .student-info { font-size: 13.5px; line-height: 1.4; text-align: left; }
         .timer-box {
             font-size: 20px;
             font-weight: 700;
             color: var(--danger);
             background: #fef2f2;
-            padding: 4px 12px;
+            padding: 4px 14px;
             border-radius: 8px;
             border: 1px solid #fecaca;
+            font-variant-numeric: tabular-nums;
         }
 
         @media (max-width: 500px) {
@@ -332,12 +343,12 @@
         .section-header {
             background: var(--primary);
             color: white;
-            padding: 10px 16px;
-            border-radius: 8px;
-            margin: 25px 0 15px 0;
+            padding: 12px 18px;
+            border-radius: 10px;
+            margin: 25px 0 16px 0;
             font-size: 17px;
-            font-weight: 600;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-weight: 700;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.08);
         }
 
         .exam-active .section-header {
@@ -348,35 +359,37 @@
 
         .question-card {
             background: var(--card-bg);
-            padding: 16px;
+            padding: 18px;
             border: 1px solid var(--border-color);
-            border-radius: 10px;
-            margin-bottom: 14px;
+            border-radius: 12px;
+            margin-bottom: 16px;
             transition: border-color 0.2s;
         }
         
         .question-card:hover { border-color: #cbd5e1; }
 
         .question-title {
-            font-size: 15.5px;
-            font-weight: 600;
-            margin-bottom: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 14px;
             color: var(--text-main);
+            line-height: 1.6;
         }
 
         .options-list { list-style: none; padding: 0; margin: 0; }
-        .options-list li { margin-bottom: 8px; }
+        .options-list li { margin-bottom: 10px; }
 
         .option-label {
             display: flex;
             align-items: center;
-            padding: 10px 14px;
+            padding: 11px 16px;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.2s;
-            font-size: 14.5px;
+            font-size: 15px;
             user-select: none;
+            line-height: 1.5;
         }
 
         .option-label:hover:not(.locked) { background: #f8fafc; border-color: #94a3b8; }
@@ -385,23 +398,24 @@
 
         /* সিলেক্ট করার পর হলুদ কালার */
         .selected-active {
-            background-color: #fef9c3 !important; /* Soft Yellow */
-            border-color: #eab308 !important;     /* Bright Golden Yellow Border */
-            color: #854d0e !important;            /* Dark Amber/Brown Text */
+            background-color: #fef9c3 !important;
+            border-color: #eab308 !important;
+            color: #854d0e !important;
             font-weight: 600;
         }
 
         /* রেজাল্টের সঠিক ও ভুল উত্তরের কালার */
-        .correct-answer { background-color: #ecfdf5 !important; border-color: #10b981 !important; color: #047857 !important; font-weight: 600; }
+        .correct-answer { background-color: #ecfdf5 !important; border-color: #10b981 !important; color: #047857 !important; font-weight: 700; }
         .wrong-answer { background-color: #fef2f2 !important; border-color: #ef4444 !important; color: #b91c1c !important; }
 
         .explanation {
-            margin-top: 12px;
-            padding: 12px;
+            margin-top: 14px;
+            padding: 14px;
             background-color: #eff6ff;
             border-left: 4px solid var(--primary);
-            border-radius: 6px;
-            font-size: 13.5px;
+            border-radius: 8px;
+            font-size: 14.5px;
+            line-height: 1.7;
             display: none;
         }
 
@@ -409,8 +423,8 @@
         .result-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 12px;
-            margin: 20px 0;
+            gap: 14px;
+            margin: 22px 0;
         }
         
         @media (min-width: 600px) {
@@ -420,47 +434,47 @@
         .result-box {
             background: #f8fafc;
             border: 1px solid var(--border-color);
-            padding: 15px;
+            padding: 18px;
             border-radius: 12px;
             text-align: left;
         }
-        .result-box h3 { margin: 0 0 8px 0; font-size: 16px; color: var(--primary); text-align: center; }
-        .result-box .score { font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 6px; }
-        .result-box .details { font-size: 13px; color: var(--secondary); line-height: 1.6; border-top: 1px solid var(--border-color); padding-top: 8px; }
+        .result-box h3 { margin: 0 0 8px 0; font-size: 17px; font-weight: 700; color: var(--primary); text-align: center; }
+        .result-box .score { font-size: 24px; font-weight: 800; text-align: center; margin-bottom: 6px; }
+        .result-box .details { font-size: 14px; color: var(--secondary); line-height: 1.7; border-top: 1px solid var(--border-color); padding-top: 10px; }
         
-        .status-pass { color: var(--success); font-weight: 600; text-align: center; margin-bottom: 4px; font-size: 14px; }
-        .status-fail { color: var(--danger); font-weight: 600; text-align: center; margin-bottom: 4px; font-size: 14px; }
+        .status-pass { color: var(--success); font-weight: 700; text-align: center; margin-bottom: 6px; font-size: 14.5px; }
+        .status-fail { color: var(--danger); font-weight: 700; text-align: center; margin-bottom: 6px; font-size: 14.5px; }
 
         .total-details-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 8px;
-            margin-top: 12px;
-            padding-top: 12px;
+            margin-top: 14px;
+            padding-top: 14px;
             border-top: 1px rgba(255, 255, 255, 0.2) solid;
-            font-size: 13.5px;
+            font-size: 14px;
             text-align: center;
         }
 
         /* Footer Join Us Single Line */
         .join-us-bar {
             margin: 25px 0 10px 0;
-            padding: 12px 14px;
+            padding: 14px 16px;
             background: #ffffff;
-            border-radius: 10px;
+            border-radius: 12px;
             border: 1px solid var(--border-color);
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 12px;
             flex-wrap: wrap;
-            font-size: 13.5px;
+            font-size: 14px;
         }
 
         .join-us-bar a {
             color: var(--secondary);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             transition: color 0.2s;
         }
 
@@ -483,7 +497,7 @@
         
         <h1 class="main-title">Project Consistency</h1>
         <h2 class="sub-title">Weekly Model Test 02</h2>
-        <p style="color: var(--secondary); font-size: 14px; margin-top: -8px;">Consistency is the Key to Success</p>
+        <p style="color: var(--secondary); font-size: 14.5px; margin-top: -8px;">Consistency is the Key to Success</p>
 
         <form id="entry-form" onsubmit="event.preventDefault(); goToInstructions();">
             <div class="form-grid text-left">
@@ -501,7 +515,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn-primary" style="margin-top: 20px;">পরবর্তী ধাপ: নিয়মাবলি ও নির্দেশিকা ➔</button>
+            <button type="submit" class="btn-primary" style="margin-top: 22px;">পরবর্তী ধাপ: নিয়মাবলি ও নির্দেশিকা ➔</button>
         </form>
     </div>
 
@@ -515,7 +529,7 @@
                 <li>নিজ দায়িত্বে যথাযথ পরিবেশ তৈরি করে পূর্ণ সততার সাথে পরীক্ষা সম্পন্ন করতে হবে।</li>
                 <li>কোনো বই, নোট, ইন্টারনেট বা অন্য যে কোনো মাধ্যমের সাহায্য নেওয়া সম্পূর্ণ নিষিদ্ধ।</li>
                 <li>নির্ধারিত অংশে নাম, কোড সঠিকভাবে পূরণ করতে হবে।</li>
-                <li><strong>বিশেষ সতর্কবার্তা:</strong> MCQ অংশে <strong>একবার কোনো অপশন নির্বাচন (Select) করে ফেললে তা লক হয়ে যাবে</strong>; পরবর্তীতে তা আর পরিবর্তন করা যাবে না। তাই পূর্ণ নিশ্চিত হয়ে সতর্কতার সাথে সঠিক উত্তর সিলেক্ট করবে।</li>
+                <li><strong>বিশেষ সতর্কবার্তা:</strong> MCQ অংশে <strong>একবার কোনো অপশন নির্বাচন (Select) করে ফেললে তা লক হয়ে যাবে</strong>; পরবর্তীতে তা আর পরিবর্তন করা যাবে না। তাই পূর্ণ নিশ্চিত হয়ে সতর্কতার সাথে সঠিক উত্তর সিলেক্ট করবে।</li>
                 <li>MCQ অংশ সাবমিট করার পর ফলাফল এবং ব্যাখ্যাসহ উত্তর জানা যাবে। এবং লিখিত অংশ প্রশ্নপত্রের লিংক পাওয়া যাবে।</li>
             </ul>
 
@@ -535,7 +549,7 @@
 
         <label class="consent-container">
             <input type="checkbox" id="consent-check" required>
-            <span>আমি সকল নিয়ম ও মানবণ্টন মনোযোগ দিয়ে পড়েছি এবং সকল শর্তে সম্মত হয়ে পরীক্ষা শুরু করছি।</span>
+            <span>আমি সকল নিয়ম ও মানবণ্টন মনোযোগ দিয়ে পড়েছি এবং সকল শর্তে সম্মত হয়ে পরীক্ষা শুরু করছি।</span>
         </label>
 
         <button type="button" class="btn-primary" onclick="startExam()">🚀 পরীক্ষা শুরু করুন (Start Exam)</button>
@@ -547,7 +561,7 @@
         <div class="top-bar">
             <div class="student-info">
                 <strong><span id="display-name"></span></strong> (<span id="display-roll"></span>)<br>
-                <span style="color: var(--secondary); font-size: 12px;">Weekly Model Test</span>
+                <span style="color: var(--secondary); font-size: 12.5px;">Weekly Model Test</span>
             </div>
             <div class="timer-box" id="timer">25:00</div>
             <div>
@@ -563,14 +577,14 @@
     <!-- ================= RESULT & REVIEW SCREEN ================= -->
     <div id="result-summary-screen" class="card text-center hidden">
         <h2 style="color: var(--primary); margin-top: 0;">পরীক্ষার ফলাফল ও মূল্যায়ন</h2>
-        <h3 id="res-name" style="margin-bottom: 10px;"></h3>
+        <h3 id="res-name" style="margin-bottom: 12px;"></h3>
         
         <div class="result-grid" id="section-results-container"></div>
 
-        <div class="card" style="background: var(--primary); color: white; padding: 20px; border: none;">
-            <h3 style="margin: 0 0 5px 0; font-size: 17px;">সর্বমোট ফলাফল</h3>
-            <div style="font-size: 32px; font-weight: bold;" id="total-score-display">0.00</div>
-            <div style="font-size: 16px; margin-top: 5px; font-weight: 600;" id="total-status-display"></div>
+        <div class="card" style="background: var(--primary); color: white; padding: 22px; border: none; border-radius: 14px;">
+            <h3 style="margin: 0 0 6px 0; font-size: 18px; font-weight: 700;">সর্বমোট ফলাফল</h3>
+            <div style="font-size: 34px; font-weight: 800;" id="total-score-display">0.00</div>
+            <div style="font-size: 16px; margin-top: 6px; font-weight: 600;" id="total-status-display"></div>
             
             <div class="total-details-grid">
                 <div>✔️ সঠিক: <b id="total-correct-display">0</b></div>
@@ -593,7 +607,7 @@
         <!-- উত্তর ও ব্যাখ্যা সরাসরি দেখার সেকশন -->
         <div id="review-questions-wrapper" class="hidden text-left" style="margin-top: 30px;">
             <hr style="border: 0; border-top: 2px dashed var(--border-color); margin: 30px 0;">
-            <h3 style="color: var(--primary); text-align: center; margin-bottom: 20px;">📌 প্রশ্নভিত্তিক বিস্তারিত সমাধান ও ব্যাখ্যা</h3>
+            <h3 style="color: var(--primary); text-align: center; margin-bottom: 20px; font-weight: 700;">📌 প্রশ্নভিত্তিক বিস্তারিত সমাধান ও ব্যাখ্যা</h3>
             
             <div id="review-questions-container"></div>
 
@@ -666,7 +680,7 @@
                 { q: "What is the synonym of 'Intrepid'?", options: ["Fearless", "Cowardly", "Lazy", "Smart"], ans: 0, exp: "Intrepid means extremely brave and fearless." },
                 { q: "Choose the correct spelling:", options: ["Accomodation", "Accommodation", "Acomodation", "Acommodation"], ans: 1, exp: "Correct spelling has double 'c' and double 'm': Accommodation." },
                 { q: "He is good ___ English.", options: ["in", "at", "with", "about"], ans: 1, exp: "The appropriate preposition is 'good at' (দক্ষ)।" },
-                { q: "Identify the antonym of 'Fragile':", options: ["Delicate", "Brittle", "Sturdy", "Weak"], ans: 2, exp: "Fragile (ভঙ্গুর) এর বিপরীত শব্দ Sturdy (দৃঢ়/মজবুত)।" },
+                { q: "Identify the antonym of 'Fragile':", options: ["Delicate", "Brittle", "Sturdy", "Weak"], ans: 2, exp: "Fragile (ভঙ্গুর) এর বিপরীত শব্দ Sturdy (দৃঢ়/মজবুত)।" },
                 { q: "The phrase 'Call it a day' means:", options: ["Start working", "Stop working on something", "Call someone", "Enjoy the day"], ans: 1, exp: "'Call it a day' means to stop what you are doing, often because you are tired." },
                 { q: "Neither of the two boys ___ present.", options: ["were", "was", "are", "have been"], ans: 1, exp: "'Neither of' takes a singular verb, so 'was' is correct." },
                 { q: "Change the voice: 'Who broke the glass?'", options: ["By whom was the glass broken?", "Who was broken the glass?", "By whom the glass was broken?", "Whom broke the glass?"], ans: 0, exp: "Interrogative passive structure: By whom + was + subject + V3?" },
@@ -845,16 +859,15 @@
         container.innerHTML = html;
     }
 
-    // একবার সিলেক্ট করলে অপশন লক ও হলুদ হাইলাইট করার ফাংশন
     function lockQuestionOption(name, globalIdx, selectedIdx) {
         const radios = document.querySelectorAll(`input[name="${name}"]`);
-        radios.forEach(radio => {
+        radiots = Array.from(radios);
+        radiots.forEach(radio => {
             radio.disabled = true;
             const parentLabel = radio.closest('.option-label');
             parentLabel.classList.add('locked');
         });
 
-        // সিলেক্টেড অপশনে হলুদ কালার অ্যাড করা
         const selectedLabel = document.getElementById(`label-${globalIdx}-${selectedIdx}`);
         if (selectedLabel) {
             selectedLabel.classList.add('selected-active');
@@ -870,7 +883,7 @@
             if (totalTime <= 0) {
                 clearInterval(timerInterval);
                 if (!hasSubmitted) {
-                    alert('সময় শেষ! আপনার উত্তরপত্র স্বয়ংক্রিয়ভাবে জমা নেওয়া হচ্ছে।');
+                    alert('সময় শেষ! আপনার উত্তরপত্র স্বয়ংক্রিয়ভাবে জমা নেওয়া হচ্ছে।');
                     processSubmission();
                 }
             }
@@ -890,7 +903,7 @@
         examData.forEach(s => totalQ += (s.questions ? s.questions.length : 0));
         const answered = document.querySelectorAll('input[type="radio"]:checked').length;
         
-        let msg = `আপনি ${totalQ} টি প্রশ্নের মধ্যে ${answered} টির উত্তর দিয়েছেন।\n\nআপনি কি নিশ্চিতভাবে ফাইনাল সাবমিট করতে চান?`;
+        let msg = `আপনি ${totalQ} টি প্রশ্নের মধ্যে ${answered} টির উত্তর দিয়েছেন।\n\nআপনি কি নিশ্চিতভাবে ফাইনাল সাবমিট করতে চান?`;
 
         if (confirm(msg)) {
             processSubmission();
@@ -917,7 +930,6 @@
                 const selected = document.querySelector(`input[name="${section.id}_q${i}"]:checked`);
                 const correctIdx = parseInt(q.ans);
                 
-                // হলুদ কালার ক্লাস সরানো (যাতে গ্রিন বা রেড প্রোপারলি দৃশ্যমান হয়)
                 const allLabels = document.querySelectorAll(`#q-card-${globalQIndex} .option-label`);
                 allLabels.forEach(l => l.classList.remove('selected-active'));
 
@@ -1049,12 +1061,10 @@
         const reviewContainer = document.getElementById('review-questions-container');
         const qContainer = document.getElementById('questions-container');
         
-        // প্রশ্নপত্র ও সমাধান রেজাল্ট পেজের ভেতরেই রেন্ডার করা
         reviewContainer.innerHTML = qContainer.innerHTML;
         reviewWrapper.classList.remove('hidden');
         document.getElementById('review-action-container').classList.add('hidden');
 
-        // স্টিকি হেডার স্বাভাবিক করা যাতে মোবাইল ভিউতে ওভারল্যাপ না করে
         const headers = reviewContainer.querySelectorAll('.section-header');
         headers.forEach(h => {
             h.style.position = 'static';
