@@ -234,65 +234,6 @@
             font-family: inherit;
         }
 
-        /* Red Highlighted Mega Written Button */
-        .btn-written-red {
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
-            color: #ffffff !important;
-            border: 2px solid #ef4444;
-            padding: 20px;
-            border-radius: 14px;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.3s ease;
-            display: block;
-            text-decoration: none;
-            text-align: center;
-            margin: 25px 0;
-            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.35);
-            animation: redPulse 2s infinite;
-            font-family: inherit;
-        }
-
-        .btn-written-red:hover {
-            transform: scale(1.015);
-            box-shadow: 0 12px 30px rgba(220, 38, 38, 0.5);
-            background: linear-gradient(135deg, #b91c1c, #991b1b);
-        }
-
-        .btn-written-red .icon {
-            font-size: 38px;
-            display: block;
-            margin-bottom: 5px;
-            line-height: 1;
-        }
-
-        .btn-written-red .main-text {
-            font-size: 21px;
-            font-weight: 800;
-            display: block;
-            letter-spacing: 0.5px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .btn-written-red .sub-text {
-            font-size: 14px;
-            font-weight: 600;
-            display: block;
-            margin-top: 8px;
-            background: rgba(0, 0, 0, 0.25);
-            padding: 4px 14px;
-            border-radius: 20px;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        @keyframes redPulse {
-            0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.5); }
-            70% { box-shadow: 0 0 0 12px rgba(220, 38, 38, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
-        }
-
         .btn-small {
             background: var(--danger);
             color: white;
@@ -303,6 +244,83 @@
             cursor: pointer;
             font-size: 14px;
             font-family: inherit;
+        }
+
+        /* Written Section Preview Card */
+        .written-preview-card {
+            background: #ffffff;
+            border: 2px solid #ef4444;
+            border-radius: 14px;
+            margin: 28px 0;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.12);
+        }
+
+        .written-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #b91c1c;
+            margin-bottom: 6px;
+        }
+
+        .written-header h3 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .written-timer-badge {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            padding: 6px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 13.5px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .preview-frame-container {
+            width: 100%;
+            height: 520px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #cbd5e1;
+            background: #f8fafc;
+            margin-bottom: 16px;
+        }
+
+        .preview-frame-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .btn-download-written {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: #ffffff;
+            padding: 13px 28px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 14px rgba(220, 38, 38, 0.3);
+            font-family: inherit;
+        }
+
+        .btn-download-written:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(220, 38, 38, 0.45);
+            background: linear-gradient(135deg, #b91c1c, #991b1b);
         }
 
         /* Top Bar */
@@ -337,6 +355,7 @@
         @media (max-width: 500px) {
             .top-bar { padding: 10px 14px; }
             .timer-box { font-size: 17px; }
+            .preview-frame-container { height: 380px; }
         }
 
         /* Section Header */
@@ -396,7 +415,7 @@
         .option-label input { margin-right: 12px; transform: scale(1.15); flex-shrink: 0; }
         .option-label.locked { cursor: not-allowed; }
 
-        /* সিলেক্ট করার পর হলুদ কালার */
+        /* সিলেক্ট করার পর কালার */
         .selected-active {
             background-color: #fef9c3 !important;
             border-color: #eab308 !important;
@@ -515,7 +534,7 @@
                 <li>কোনো বই, নোট, ইন্টারনেট বা অন্য যে কোনো মাধ্যমের সাহায্য নেওয়া সম্পূর্ণ নিষিদ্ধ।</li>
                 <li>নির্ধারিত অংশে নাম, কোড সঠিকভাবে পূরণ করতে হবে।</li>
                 <li><strong>বিশেষ সতর্কবার্তা:</strong> MCQ অংশে <strong>একবার কোনো অপশন নির্বাচন (Select) করে ফেললে তা লক হয়ে যাবে</strong>; পরবর্তীতে তা আর পরিবর্তন করা যাবে না। তাই পূর্ণ নিশ্চিত হয়ে সতর্কতার সাথে সঠিক উত্তর সিলেক্ট করবে।</li>
-                <li>MCQ অংশ সাবমিট করার পর সামগ্রিক ফলাফল ও লিখিত অংশ প্রশ্নপত্রের লিংক পাওয়া যাবে।</li>
+                <li>MCQ অংশ সাবমিট করার পর সামগ্রিক ফলাফল এবং লিখিত অংশের প্রশ্ন সরাসরি দেখা ও ডাউনলোড করা যাবে।</li>
             </ul>
 
             <h3>📊 MCQ অংশের বিষয় ও মানবণ্টন:</h3>
@@ -559,7 +578,7 @@
         <button class="btn-primary" style="margin: 30px 0 60px 0;" onclick="checkAndSubmit()">সাবমিট করুন</button>
     </div>
 
-    <!-- ================= RESULT & REVIEW SCREEN ================= -->
+    <!-- ================= RESULT SCREEN ================= -->
     <div id="result-summary-screen" class="card text-center hidden">
         <h2 style="color: var(--primary); margin-top: 0;">পরীক্ষার ফলাফল ও মূল্যায়ন</h2>
         <h3 id="res-name" style="margin-bottom: 12px;"></h3>
@@ -578,12 +597,24 @@
             </div>
         </div>
 
-        <!-- মেগা হাইলাইটেড রেড লিখিত প্রশ্ন বাটন -->
-        <a href="https://drive.google.com/file/d/1CRNRpOYqkA3KFBLHzDcnyeV3bTJIoG4p/view" target="_blank" class="btn-written-red">
-            <span class="icon">📝</span>
-            <span class="main-text">লিখিত অংশের প্রশ্ন দেখুন</span>
-            <span class="sub-text">⏳ লিখিত খাতা সাবমিট করার শেষ সময় রাত ১০:৩০ মিনিট</span>
-        </a>
+        <!-- ================= লিখিত প্রশ্ন প্রিভিউ ও ডাউনলোড সেকশন ================= -->
+        <div class="written-preview-card">
+            <div class="written-header">
+                <span style="font-size: 24px;">📝</span>
+                <h3>লিখিত অংশের প্রশ্নপত্র</h3>
+            </div>
+            <div class="written-timer-badge">⏳ লিখিত খাতা সাবমিট করার শেষ সময় রাত ১০:৩০ মিনিট</div>
+            
+            <!-- ড্রাইভ ফাইলের লাইভ প্রিভিউ ফ্রেম -->
+            <div class="preview-frame-container">
+                <iframe src="https://drive.google.com/file/d/1CRNRpOYqkA3KFBLHzDcnyeV3bTJIoG4p/preview" allow="autoplay"></iframe>
+            </div>
+
+            <!-- ডাউনলোড ও নতুন ট্যাবে খোলার বাটন -->
+            <a href="https://drive.google.com/file/d/1CRNRpOYqkA3KFBLHzDcnyeV3bTJIoG4p/view" target="_blank" class="btn-download-written">
+                ⬇️ লিখিত প্রশ্নপত্র ডাউনলোড করুন / নতুন ট্যাবে দেখুন
+            </a>
+        </div>
 
         <!-- Join Us সেকশন -->
         <div class="join-us-bar">
@@ -601,7 +632,6 @@
 <script>
     // 🔗 কনফিগারেশন
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw-Moo1UqtiC5dsuOyLeZkmODXIuCgVM1iFRSF5PqFyNusKaBwiJ6a5XRdID-0EZP1z/exec";
-    const WRITTEN_DRIVE_URL = "https://drive.google.com/file/d/1WYGhPDYHnPf1NWx0oXc2OwAORqkkTF4Y/view";
     const TEST_NAME = "DU B Weekly Model Test 01";
 
     let userIP = "Unknown";
@@ -672,7 +702,7 @@
                 { q: "বাংলাদেশের প্রথম মহিলা প্রধানমন্ত্রী কে?", options: ["বেগম রোকেয়া", "বেগম খালেদা জিয়া", "শেখ হাসিনা", "সুফিয়া কামাল"], ans: 1 },
                 { q: "জাতিসংঘের বর্তমান মহাসচিবের নাম কী?", options: ["বান কি মুন", "আন্তোনিও গুতেরেস", "কফি আনান", "বুত্রোস ঘালি"], ans: 1 },
                 { q: "আন্তর্জাতিক মাতৃভাষা দিবস হিসেবে ২১ ফেব্রুয়ারিকে স্বীকৃতি দেয় কোন সংস্থা?", options: ["UNESCO", "UNICEF", "WHO", "UNDP"], ans: 0 },
-                { q: "সংविधानের কত অনুচ্ছেদ অনুযায়ী মৌলিক অধিকার বলবৎ করা হয়?", options: ["২৭ অনুচ্ছেদ", "৪৪ অনুচ্ছেদ", "১০২ অনুচ্ছেদ", "৪৪ ও ১০২ অনুচ্ছেদ"], ans: 3 },
+                { q: "সংবিধানের কত অনুচ্ছেদ অনুযায়ী মৌলিক অধিকার বলবৎ করা হয়?", options: ["২৭ অনুচ্ছেদ", "৪৪ অনুচ্ছেদ", "১০২ অনুচ্ছেদ", "৪৪ ও ১০২ অনুচ্ছেদ"], ans: 3 },
                 { q: "বাংলাদেশের জাতীয় সংসদের স্থপতি কে?", options: ["এফ আর খান", "লুই আই কান", "মাজহারুল ইসলাম", "হামিদুর রহমান"], ans: 1 },
                 { q: "সুন্দরবনকে বিশ্ব ঐতিহ্য (World Heritage) ঘোষণা করে কোন সংস্থা?", options: ["ইউনেস্কো", "ইউএনডিপি", "ইউনেপ", "আইইউসিএন"], ans: 0 },
                 { q: "বাংলাদেশের একমাত্র প্রবাল দ্বীপ কোনটি?", options: ["সন্দ্বীপ", "হাতিয়া", "সেন্টমার্টিন", "মহেশখালী"], ans: 2 },
