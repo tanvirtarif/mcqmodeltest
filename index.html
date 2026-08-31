@@ -234,6 +234,32 @@
             font-family: inherit;
         }
 
+        .btn-print {
+            background: linear-gradient(135deg, #059669, #047857);
+            color: white;
+            border: none;
+            padding: 15px 24px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            margin: 18px 0 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.2s;
+            font-family: inherit;
+            box-shadow: 0 4px 14px rgba(5, 150, 105, 0.25);
+        }
+
+        .btn-print:hover {
+            background: linear-gradient(135deg, #047857, #065f46);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(5, 150, 105, 0.35);
+        }
+
         .btn-small {
             background: var(--danger);
             color: white;
@@ -286,7 +312,7 @@
 
         .preview-frame-container {
             width: 100%;
-            height: 520px;
+            height: 500px;
             border-radius: 10px;
             overflow: hidden;
             border: 1px solid #cbd5e1;
@@ -460,6 +486,58 @@
             text-align: center;
         }
 
+        /* Printable Evaluation Section */
+        #print-evaluation-sheet {
+            display: none;
+            text-align: left;
+            margin-top: 30px;
+        }
+
+        .print-q-card {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 14px;
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+
+        .print-q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            gap: 10px;
+        }
+
+        .print-badge {
+            font-size: 12.5px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .badge-correct { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+        .badge-wrong { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+        .badge-unattempted { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
+
+        .print-ans-row {
+            font-size: 14px;
+            margin: 4px 0;
+            line-height: 1.6;
+        }
+
+        .print-exp-box {
+            background: #f8fafc;
+            border-left: 3px solid var(--primary);
+            padding: 8px 12px;
+            font-size: 13.5px;
+            color: #334155;
+            margin-top: 8px;
+            border-radius: 4px;
+        }
+
         /* Footer Join Us Single Line */
         .join-us-bar {
             margin: 25px 0 10px 0;
@@ -488,6 +566,80 @@
 
         .join-us-bar span.divider {
             color: #cbd5e1;
+        }
+
+        /* ================= 🖨️ PRINT & PDF STYLES ================= */
+        @media print {
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 12pt;
+            }
+
+            .container {
+                max-width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            /* অপ্রয়োজনীয় উপাদান হাইড */
+            .top-bar, 
+            .banner-img, 
+            .btn-primary, 
+            .btn-secondary, 
+            .btn-print, 
+            .btn-small, 
+            .written-preview-card, 
+            .join-us-bar, 
+            #step-1-screen, 
+            #step-2-screen, 
+            #exam-screen {
+                display: none !important;
+            }
+
+            .card {
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
+                margin-bottom: 15px !important;
+            }
+
+            #result-summary-screen {
+                display: block !important;
+            }
+
+            #print-evaluation-sheet {
+                display: block !important;
+            }
+
+            .result-grid {
+                display: grid !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 10px !important;
+                page-break-inside: avoid;
+            }
+
+            .result-box {
+                border: 1px solid #94a3b8 !important;
+                background: #ffffff !important;
+                padding: 10px !important;
+            }
+
+            .print-q-card {
+                border: 1px solid #cbd5e1 !important;
+                background: #ffffff !important;
+                margin-bottom: 10px !important;
+                page-break-inside: avoid;
+            }
+
+            .section-header {
+                background: #0f172a !important;
+                color: #ffffff !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                page-break-before: auto;
+                page-break-after: avoid;
+            }
         }
     </style>
 </head>
@@ -534,7 +686,7 @@
                 <li>কোনো বই, নোট, ইন্টারনেট বা অন্য যে কোনো মাধ্যমের সাহায্য নেওয়া সম্পূর্ণ নিষিদ্ধ।</li>
                 <li>নির্ধারিত অংশে নাম, কোড সঠিকভাবে পূরণ করতে হবে।</li>
                 <li><strong>বিশেষ সতর্কবার্তা:</strong> MCQ অংশে <strong>একবার কোনো অপশন নির্বাচন (Select) করে ফেললে তা লক হয়ে যাবে</strong>; পরবর্তীতে তা আর পরিবর্তন করা যাবে না। তাই পূর্ণ নিশ্চিত হয়ে সতর্কতার সাথে সঠিক উত্তর সিলেক্ট করবে।</li>
-                <li>MCQ অংশ সাবমিট করার পর সামগ্রিক ফলাফল এবং লিখিত অংশের প্রশ্ন সরাসরি দেখা ও ডাউনলোড করা যাবে।</li>
+                <li>MCQ অংশ সাবমিট করার পর সামগ্রিক ফলাফল, ভুল উত্তরগুলোর ব্যাখ্যাসহ প্রিন্ট/পিডিএফ রিপোর্ট এবং লিখিত প্রশ্নপত্র পাওয়া যাবে।</li>
             </ul>
 
             <h3>📊 MCQ অংশের বিষয় ও মানবণ্টন:</h3>
@@ -580,7 +732,7 @@
 
     <!-- ================= RESULT SCREEN ================= -->
     <div id="result-summary-screen" class="card text-center hidden">
-        <h2 style="color: var(--primary); margin-top: 0;">পরীক্ষার ফলাফল ও মূল্যায়ন</h2>
+        <h2 style="color: var(--primary); margin-top: 0;">পরীক্ষার ফলাফল ও মূল্যায়ন পত্র</h2>
         <h3 id="res-name" style="margin-bottom: 12px;"></h3>
         
         <div class="result-grid" id="section-results-container"></div>
@@ -596,6 +748,11 @@
                 <div>⚪ অনুত্তরিত: <b id="total-unattempted-display">0</b></div>
             </div>
         </div>
+
+        <!-- 🖨️ প্রিন্ট ও PDF ডাউনলোড বাটন -->
+        <button type="button" class="btn-print" onclick="printEvaluationReport()">
+            <span>🖨️</span> ভুল উত্তর ও ব্যাখ্যাসহ মূল্যায়নপত্র ডাউনলোড / প্রিন্ট করুন (PDF)
+        </button>
 
         <!-- ================= লিখিত প্রশ্ন প্রিভিউ ও ডাউনলোড সেকশন ================= -->
         <div class="written-preview-card">
@@ -614,6 +771,13 @@
             <a href="https://drive.google.com/file/d/1CRNRpOYqkA3KFBLHzDcnyeV3bTJIoG4p/view" target="_blank" class="btn-download-written">
                 ⬇️ লিখিত প্রশ্নপত্র ডাউনলোড করুন / নতুন ট্যাবে দেখুন
             </a>
+        </div>
+
+        <!-- ================= প্রিন্ট/পিডিএফ সেকশন (প্রিন্ট দেওয়ার সময় রেন্ডার হবে) ================= -->
+        <div id="print-evaluation-sheet">
+            <hr style="border: 0; border-top: 2px dashed #94a3b8; margin: 25px 0;">
+            <h3 style="color: var(--primary); text-align: center; margin-bottom: 16px;">📌 প্রশ্নভিত্তিক মূল্যায়ন ও বিস্তারিত সমাধান</h3>
+            <div id="print-questions-list"></div>
         </div>
 
         <!-- Join Us সেকশন -->
@@ -644,28 +808,28 @@
             .catch(() => { userIP = "Unavailable"; });
     } catch(e) { userIP = "Unavailable"; }
 
-    // এইচএসসি ও ভর্তি স্ট্যান্ডার্ড ৬০টি প্রশ্ন
+    // এইচএসসি ও ভর্তি স্ট্যান্ডার্ড ৬০টি প্রশ্ন এবং ব্যাখ্যা
     let examData = [
         {
             id: "bangla",
             name: "বাংলা",
             passMark: 5,
             questions: [
-                { q: "‘অগ্নি’ শব্দের সমার্থক শব্দ কোনটি?", options: ["অনল", "পবন", "সাগর", "গিরি"], ans: 0 },
-                { q: "‘যা পূর্বে ছিল এখন নেই’ - এক কথায় কী হবে?", options: ["অভূতপূর্ব", "ভূতপূর্ব", "পূর্বজ", "অদৃষ্টপূর্ব"], ans: 1 },
-                { q: "সন্ধি বিচ্ছেদ করুন: ‘বিদ্যালয়’", options: ["বিদ্য + আলয়", "বিদ্যা + আলয়", "বিদ্য + লয়", "বিদ্যা + লয়"], ans: 1 },
-                { q: "‘তাহারেই পড়ে মনে’ কবিতাটি কোন কাব্যগ্রন্থ থেকে সংকলিত?", options: ["সাঁঝের মায়া", "মায়াকানন", "উদাত্ত পৃথিবী", "ছায়াহরিণ"], ans: 0 },
-                { q: "‘অর্ধচন্দ্র’ বাগধারাটির অর্থ কী?", options: ["গলাধাক্কা দেওয়া", "চাঁদের অর্ধেক", "উপহার দেওয়া", "অসম্ভব বস্তু"], ans: 0 },
-                { q: "কোন বানানটি শুদ্ধ?", options: ["মরিচিকা", "মরীচিকা", "মরীচীকা", "মরিচীকা"], ans: 1 },
-                { q: "‘কবর’ নাটকের রচয়িতা কে?", options: ["জসীম উদ্‌দীন", "মুনীর চৌধুরী", "নুরুল মোমেন", "সেলিম আল দীন"], ans: 1 },
-                { q: "‘বিলাসী’ গল্পে উল্লিখিত সাপের নাম কী ছিল?", options: ["গোখরো", "কালাচ", "খড়মপায়া", "শঙ্খচূড়"], ans: 2 },
-                { q: "বাংলা বর্ণমালায় মাত্রাহীন বর্ণ কয়টি?", options: ["৭টি", "৮টি", "১০টি", "১১টি"], ans: 2 },
-                { q: "‘লালসালু’ উপন্যাসের মূল চরিত্র কোনটি?", options: ["রহিমা", "মজিদ", "জমিল", "খালেক ব্যাপারী"], ans: 1 },
-                { q: "‘রেইনকোট’ গল্পের কথক কে?", options: ["নুরুল হুদা", "আসমা", "মিন্টু", "আকবর সাজিদ"], ans: 0 },
-                { q: "কোনটি বহুব্রীহি সমাসের উদাহরণ?", options: ["পীতাম্বর", "রাজপুত্র", "হাতখরচ", "গাছপাকা"], ans: 0 },
-                { q: "‘ক্ষুধার্ত’ শব্দের সঠিক সন্ধি বিচ্ছেদ কোনটি?", options: ["ক্ষুধা + ঋত", "ক্ষুধ + আর্ত", "ক্ষুধা + আর্ত", "ক্ষুধ + ঋত"], ans: 0 },
-                { q: "‘পদ্মানদীর মাঝি’ উপন্যাসের রচয়িতা কে?", options: ["তারাশঙ্কর বন্দ্যোপাধ্যায়", "মানিক বন্দ্যোপাধ্যায়", "বিভূতিভূষণ বন্দ্যোপাধ্যায়", "শরৎচন্দ্র চট্টোপাধ্যায়"], ans: 1 },
-                { q: "শুদ্ধ বাক্যটি চিহ্নিত করুন:", options: ["সব ছাত্ররা উপস্থিত আছে", "সকল ছাত্রগণ উপস্থিত", "সব ছাত্র উপস্থিত আছে", "সকল ছাত্ররা উপস্থিত"], ans: 2 }
+                { q: "‘অগ্নি’ শব্দের সমার্থক শব্দ কোনটি?", options: ["অনল", "পবন", "সাগর", "গিরি"], ans: 0, exp: "অগ্নি-এর সমার্থক শব্দ অনল, বহ্নি, পাবক, হুতাশন ইত্যাদি।" },
+                { q: "‘যা পূর্বে ছিল এখন নেই’ - এক কথায় কী হবে?", options: ["অভূতপূর্ব", "ভূতপূর্ব", "পূর্বজ", "অদৃষ্টপূর্ব"], ans: 1, exp: "যা পূর্বে ছিল এখন নেই = ভূতপূর্ব। যা পূর্বে দেখা যায়নি = অদৃষ্টপূর্ব।" },
+                { q: "সন্ধি বিচ্ছেদ করুন: ‘বিদ্যালয়’", options: ["বিদ্য + আলয়", "বিদ্যা + আলয়", "বিদ্য + লয়", "বিদ্যা + লয়"], ans: 1, exp: "বিদ্যা + আলয় = বিদ্যালয় (আ + আ = আ)।" },
+                { q: "‘তাহারেই পড়ে মনে’ কবিতাটি কোন কাব্যগ্রন্থ থেকে সংকলিত?", options: ["সাঁঝের মায়া", "মায়াকানন", "উদাত্ত পৃথিবী", "ছায়াহরিণ"], ans: 0, exp: "বেগম সুফিয়া কামালের 'সাঁঝের মায়া' (১৯৩৮) কাব্যগ্রন্থের অন্তর্গত।" },
+                { q: "‘অর্ধচন্দ্র’ বাগধারাটির অর্থ কী?", options: ["গলাধাক্কা দেওয়া", "চাঁদের অর্ধেক", "উপহার দেওয়া", "অসম্ভব বস্তু"], ans: 0, exp: "অর্ধচন্দ্র দেওয়া অর্থ গলাধাক্কা দিয়ে বের করে দেওয়া।" },
+                { q: "কোন বানানটি শুদ্ধ?", options: ["মরিচিকা", "মরীচিকা", "মরীচীকা", "মরিচীকা"], ans: 1, exp: "শুদ্ধ বানান: ম র দীর্ঘ-ঈ চ হ্রস্ব-ই ক আ-কার = মরীচিকা।" },
+                { q: "‘কবর’ নাটকের রচয়িতা কে?", options: ["জসীম উদ্‌দীন", "মুনীর চৌধুরী", "নুরুল মোমেন", "সেলিম আল দীন"], ans: 1, exp: "১৯৫৩ সালে ভাষা আন্দোলনের পটভূমিতে রচিত মুনীর চৌধুরীর বিখ্যাত নাটক 'কবর'।" },
+                { q: "‘বিলাসী’ গল্পে উল্লিখিত সাপের নাম কী ছিল?", options: ["গোখরো", "কালাচ", "খড়মপায়া", "শঙ্খচূড়"], ans: 2, exp: "শরৎচন্দ্র চট্টোপাধ্যায়ের বিলাসী গল্পে 'খড়মপায়া' জাতের সাপের কথা উল্লেখ রয়েছে।" },
+                { q: "বাংলা বর্ণমালায় মাত্রাহীন বর্ণ কয়টি?", options: ["৭টি", "৮টি", "১০টি", "১১টি"], ans: 2, exp: "বাংলা বর্ণমালায় পূর্ণমাত্রা ৩২টি, অর্ধমাত্রা ৮টি এবং মাত্রাহীন ১০টি।" },
+                { q: "‘লালসালু’ উপন্যাসের মূল চরিত্র কোনটি?", options: ["রহিমা", "মজিদ", "জমিল", "খালেক ব্যাপারী"], ans: 1, exp: "সৈয়দ ওয়ালীউল্লাহ্ রচিত লালসালু উপন্যাসের কেন্দ্রীয় চরিত্র মজিদ।" },
+                { q: "‘রেইনকোট’ গল্পের কথক কে?", options: ["নুরুল হুদা", "আসমা", "মিন্টু", "আকবর সাজিদ"], ans: 0, exp: "আখতারুজ্জামান ইলিয়াসের রেইনকোট গল্পের মূল চরিত্র ও কথক কলেজ শিক্ষক নুরুল হুদা।" },
+                { q: "কোনটি বহুব্রীহি সমাসের উদাহরণ?", options: ["পীতাম্বর", "রাজপুত্র", "হাতখরচ", "গাছপাকা"], ans: 0, exp: "পীত অম্বর যার = পীতাম্বর (শ্রীকৃষ্ণকে বোঝায়, বহুব্রীহি সমাস)।" },
+                { q: "‘ক্ষুধার্ত’ শব্দের সঠিক সন্ধি বিচ্ছেদ কোনটি?", options: ["ক্ষুধা + ঋত", "ক্ষুধ + আর্ত", "ক্ষুধা + আর্ত", "ক্ষুধ + ঋত"], ans: 0, exp: "ক্ষুধা + ঋত = ক্ষুধার্ত (ঋত শব্দ পরে থাকলে আ+ঋ মিলে আর্ হয়)।" },
+                { q: "‘পদ্মানদীর মাঝি’ উপন্যাসের রচয়িতা কে?", options: ["তারাশঙ্কর বন্দ্যোপাধ্যায়", "মানিক বন্দ্যোপাধ্যায়", "বিভূতিভূষণ বন্দ্যোপাধ্যায়", "শরৎচন্দ্র চট্টোপাধ্যায়"], ans: 1, exp: "মানিক বন্দ্যোপাধ্যায়ের বিখ্যাত উপন্যাস পদ্মানদীর মাঝি (১৯৩৬)।" },
+                { q: "শুদ্ধ বাক্যটি চিহ্নিত করুন:", options: ["সব ছাত্ররা উপস্থিত আছে", "সকল ছাত্রগণ উপস্থিত", "সব ছাত্র উপস্থিত আছে", "সকল ছাত্ররা উপস্থিত"], ans: 2, exp: "দ্বিবচন প্রয়োগের ভুল এড়িয়ে 'সব ছাত্র উপস্থিত আছে' শুদ্ধ রূপ।" }
             ]
         },
         {
@@ -673,21 +837,21 @@
             name: "English",
             passMark: 5,
             questions: [
-                { q: "What is the synonym of 'Intrepid'?", options: ["Fearless", "Cowardly", "Lazy", "Smart"], ans: 0 },
-                { q: "Choose the correct spelling:", options: ["Accomodation", "Accommodation", "Acomodation", "Acommodation"], ans: 1 },
-                { q: "He is good ___ English.", options: ["in", "at", "with", "about"], ans: 1 },
-                { q: "Identify the antonym of 'Fragile':", options: ["Delicate", "Brittle", "Sturdy", "Weak"], ans: 2 },
-                { q: "The phrase 'Call it a day' means:", options: ["Start working", "Stop working on something", "Call someone", "Enjoy the day"], ans: 1 },
-                { q: "Neither of the two boys ___ present.", options: ["were", "was", "are", "have been"], ans: 1 },
-                { q: "Change the voice: 'Who broke the glass?'", options: ["By whom was the glass broken?", "Who was broken the glass?", "By whom the glass was broken?", "Whom broke the glass?"], ans: 0 },
-                { q: "Which one is an abstract noun?", options: ["Honesty", "Water", "Army", "Book"], ans: 0 },
-                { q: "He died ___ overeating.", options: ["of", "by", "from", "for"], ans: 2 },
-                { q: "If I ___ a bird, I would fly in the sky.", options: ["am", "was", "were", "had been"], ans: 2 },
-                { q: "What is the adjective form of 'Courage'?", options: ["Courageously", "Encourage", "Courageous", "Courageousness"], ans: 2 },
-                { q: "Look forward to ___ you soon.", options: ["see", "seeing", "seen", "saw"], ans: 1 },
-                { q: "Choose the correct sentence:", options: ["One of the girl is absent", "One of the girls are absent", "One of the girls is absent", "One of girl are absent"], ans: 2 },
-                { q: "The synonym of 'Benevolent' is:", options: ["Kind", "Cruel", "Selfish", "Proud"], ans: 0 },
-                { q: "No sooner had he seen the police ___ he ran away.", options: ["when", "then", "than", "before"], ans: 2 }
+                { q: "What is the synonym of 'Intrepid'?", options: ["Fearless", "Cowardly", "Lazy", "Smart"], ans: 0, exp: "Intrepid means extremely brave and fearless." },
+                { q: "Choose the correct spelling:", options: ["Accomodation", "Accommodation", "Acomodation", "Acommodation"], ans: 1, exp: "Correct spelling has double 'c' and double 'm': Accommodation." },
+                { q: "He is good ___ English.", options: ["in", "at", "with", "about"], ans: 1, exp: "The appropriate preposition is 'good at' (দক্ষ)।" },
+                { q: "Identify the antonym of 'Fragile':", options: ["Delicate", "Brittle", "Sturdy", "Weak"], ans: 2, exp: "Fragile (ভঙ্গুর) এর বিপরীত শব্দ Sturdy (দৃঢ়/মজবুত)।" },
+                { q: "The phrase 'Call it a day' means:", options: ["Start working", "Stop working on something", "Call someone", "Enjoy the day"], ans: 1, exp: "'Call it a day' means to stop what you are doing, often because you are tired." },
+                { q: "Neither of the two boys ___ present.", options: ["were", "was", "are", "have been"], ans: 1, exp: "'Neither of' takes a singular verb, so 'was' is correct." },
+                { q: "Change the voice: 'Who broke the glass?'", options: ["By whom was the glass broken?", "Who was broken the glass?", "By whom the glass was broken?", "Whom broke the glass?"], ans: 0, exp: "Interrogative passive structure: By whom + was + subject + V3?" },
+                { q: "Which one is an abstract noun?", options: ["Honesty", "Water", "Army", "Book"], ans: 0, exp: "Honesty is a quality/state and cannot be physically touched, so it is an abstract noun." },
+                { q: "He died ___ overeating.", options: ["of", "by", "from", "for"], ans: 2, exp: "Die from (কোনো কারণ/অতিরিক্ত কাজে মৃত্যু যেমন overeating/wound)। রোগে মৃত্যু হলে 'die of' হয়।" },
+                { q: "If I ___ a bird, I would fly in the sky.", options: ["am", "was", "were", "had been"], ans: 2, exp: "Unreal/hypothetical condition in second conditional uses 'were'." },
+                { q: "What is the adjective form of 'Courage'?", options: ["Courageously", "Encourage", "Courageous", "Courageousness"], ans: 2, exp: "Courage (Noun) -> Courageous (Adjective)." },
+                { q: "Look forward to ___ you soon.", options: ["see", "seeing", "seen", "saw"], ans: 1, exp: "'Look forward to' is followed by Gerund (verb+ing)." },
+                { q: "Choose the correct sentence:", options: ["One of the girl is absent", "One of the girls are absent", "One of the girls is absent", "One of girl are absent"], ans: 2, exp: "One of + Plural Noun (girls) + Singular Verb (is)." },
+                { q: "The synonym of 'Benevolent' is:", options: ["Kind", "Cruel", "Selfish", "Proud"], ans: 0, exp: "Benevolent means kind and generous." },
+                { q: "No sooner had he seen the police ___ he ran away.", options: ["when", "then", "than", "before"], ans: 2, exp: "Structure: 'No sooner had ... than'." }
             ]
         },
         {
@@ -695,36 +859,36 @@
             name: "সাধারণ জ্ঞান",
             passMark: 10,
             questions: [
-                { q: "বাংলাদেশের স্বাধীনতা দিবস কবে?", options: ["১৬ ডিসেম্বর", "২৬ মার্চ", "২১ ফেব্রুয়ারি", "৭ মার্চ"], ans: 1 },
-                { q: "মুজিবনগর সরকার আনুষ্ঠানিকভাবে কবে শপথ গ্রহণ করে?", options: ["১০ এপ্রিল ১৯৭১", "১৭ এপ্রিল ১৯৭১", "২৫ মার্চ ১৯৭১", "১৬ ডিসেম্বর ১৯৭১"], ans: 1 },
-                { q: "সার্ক (SAARC) এর সদর দপ্তর কোথায় অবস্থিত?", options: ["ঢাকা", "কাঠমান্ডু", "কলম্বো", "ইসলামাবাদ"], ans: 1 },
-                { q: "পদ্মা সেতুর দৈর্ঘ্য কত কিলোমিটার?", options: ["৬.১৫ কিমি", "৫.৮০ কিমি", "৭.২০ কিমি", "৬.৮০ কিমি"], ans: 0 },
-                { q: "বাংলাদেশের প্রথম মহিলা প্রধানমন্ত্রী কে?", options: ["বেগম রোকেয়া", "বেগম খালেদা জিয়া", "শেখ হাসিনা", "সুফিয়া কামাল"], ans: 1 },
-                { q: "জাতিসংঘের বর্তমান মহাসচিবের নাম কী?", options: ["বান কি মুন", "আন্তোনিও গুতেরেস", "কফি আনান", "বুত্রোস ঘালি"], ans: 1 },
-                { q: "আন্তর্জাতিক মাতৃভাষা দিবস হিসেবে ২১ ফেব্রুয়ারিকে স্বীকৃতি দেয় কোন সংস্থা?", options: ["UNESCO", "UNICEF", "WHO", "UNDP"], ans: 0 },
-                { q: "সংবিধানের কত অনুচ্ছেদ অনুযায়ী মৌলিক অধিকার বলবৎ করা হয়?", options: ["২৭ অনুচ্ছেদ", "৪৪ অনুচ্ছেদ", "১০২ অনুচ্ছেদ", "৪৪ ও ১০২ অনুচ্ছেদ"], ans: 3 },
-                { q: "বাংলাদেশের জাতীয় সংসদের স্থপতি কে?", options: ["এফ আর খান", "লুই আই কান", "মাজহারুল ইসলাম", "হামিদুর রহমান"], ans: 1 },
-                { q: "সুন্দরবনকে বিশ্ব ঐতিহ্য (World Heritage) ঘোষণা করে কোন সংস্থা?", options: ["ইউনেস্কো", "ইউএনডিপি", "ইউনেপ", "আইইউসিএন"], ans: 0 },
-                { q: "বাংলাদেশের একমাত্র প্রবাল দ্বীপ কোনটি?", options: ["সন্দ্বীপ", "হাতিয়া", "সেন্টমার্টিন", "মহেশখালী"], ans: 2 },
-                { q: "‘সূর্যোদয়ের দেশ’ বলা হয় কোন দেশকে?", options: ["নরওয়ে", "জাপান", "চীন", "ফিনল্যান্ড"], ans: 1 },
-                { q: "আন্তর্জাতিক রেডক্রস (ICRC)-এর সদর দপ্তর কোথায়?", options: ["জেনেভা", "প্যারিস", "নিউইয়র্ক", "লন্ডন"], ans: 0 },
-                { q: "বিশ্ব পরিবেশ দিবস কবে পালিত হয়?", options: ["৫ জুন", "২২ এপ্রিল", "১ মে", "৮ মার্চ"], ans: 0 },
-                { q: "গ্রিনউইচ মান সময় (GMT) কোন দেশে অবস্থিত?", options: ["যুক্তরাষ্ট্র", "যুক্তরাজ্য", "ফ্রান্স", "জার্মানি"], ans: 1 },
-                { q: "মুক্তিযুদ্ধে বীরত্বসূচক সর্বোচ্চ খেতাব কোনটি?", options: ["বীর উত্তম", "বীর শ্রেষ্ঠ", "বীর বিক্রম", "বীর প্রতীক"], ans: 1 },
-                { q: "বাংলাদেশের সংবিধান কবে গৃহীত হয়?", options: ["২৬ মার্চ ১৯৭২", "১৬ ডিসেম্বর ১৯৭২", "৪ নভেম্বর ১৯৭২", "১০ জানুয়ারি ১৯৭২"], ans: 2 },
-                { q: "‘আইফেল টাওয়ার’ কোথায় অবস্থিত?", options: ["লন্ডন", "রোম", "প্যারিস", "মাদ্রিদ"], ans: 2 },
-                { q: "জলবায়ু পরিবর্তন সংক্রান্ত জাতিসংঘ ফ্রেমওয়ার্ক কনভেনশন কোনটি?", options: ["UNFCCC", "UNEP", "COP", "IPCC"], ans: 0 },
-                { q: "বর্তমান বিশ্বের দীর্ঘতম নদী কোনটি?", options: ["আমাজন", "নীলনদ", "ইয়াংসিকিয়াং", "মিসিসিপি"], ans: 1 },
-                { q: "ঢাকা বিশ্ববিদ্যালয় কত সালে প্রতিষ্ঠিত হয়?", options: ["১৯০৫", "১৯১১", "১৯২১", "১৯৪৭"], ans: 2 },
-                { q: "বাংলাদেশের সর্বউত্তরের উপজেলার নাম কী?", options: ["তেঁতুলিয়া", "বাংলাবান্ধা", "রুমা", "টেকনাফ"], ans: 0 },
-                { q: "নোবেল পুরস্কার কয়টি বিষয়ে প্রদান করা হয়?", options: ["৫টি", "৬টি", "৭টি", "৪টি"], ans: 1 },
-                { q: "‘অসমাপ্ত আত্মজীবনী’ কার রচিত গ্রন্থ?", options: ["বঙ্গবন্ধু শেখ মুজিবুর রহমান", "তাজউদ্দীন আহমদ", "মওলানা ভাসানী", "আবুল মনসুর আহমদ"], ans: 0 },
-                { q: "ইউরোপীয় ইউনিয়নের (EU) একক মুদ্রার নাম কী?", options: ["পাউন্ড", "ইউরো", "ডলার", "ফ্রাঙ্ক"], ans: 1 },
-                { q: "বঙ্গবন্ধু স্যাটেলাইট-১ কোন দেশ থেকে উৎক্ষেপণ করা হয়?", options: ["রাশিয়া", "ফ্রান্স", "যুক্তরাষ্ট্র", "চীন"], ans: 2 },
-                { q: "বিশ্বব্যাংকের সদর দপ্তর কোথায় অবস্থিত?", options: ["নিউইয়র্ক", "ওয়াশিংটন ডিসি", "জেনেভা", "ভিয়েনা"], ans: 1 },
-                { q: "বায়ুমণ্ডলে অক্সিজেনের শতকরা পরিমাণ কত?", options: ["২০.৯৫%", "৭৮.০৯%", "০.০৩%", "১.২%"], ans: 0 },
-                { q: "ইতিহাসের জনক কাকে বলা হয়?", options: ["হেরোডোটাস", "অ্যারিস্টটল", "সক্রেটিস", "প্লেটো"], ans: 0 },
-                { q: "কম্পিউটারের মস্তিষ্ক বলা হয় কোন অংশকে?", options: ["RAM", "CPU", "Hard Disk", "Monitor"], ans: 1 }
+                { q: "বাংলাদেশের স্বাধীনতা দিবস কবে?", options: ["১৬ ডিসেম্বর", "২৬ মার্চ", "২১ ফেব্রুয়ারি", "৭ মার্চ"], ans: 1, exp: "২৬ মার্চ বাংলাদেশের মহান স্বাধীনতা ও জাতীয় দিবস।" },
+                { q: "মুজিবনগর সরকার আনুষ্ঠানিকভাবে কবে শপথ গ্রহণ করে?", options: ["১০ এপ্রিল ১৯৭১", "১৭ এপ্রিল ১৯৭১", "২৫ মার্চ ১৯৭১", "১৬ ডিসেম্বর ১৯৭১"], ans: 1, exp: "১৯৭১ সালের ১৭ এপ্রিল মেহেরপুরের বৈদ্যনাথতলায় (মুজিবনগর) শপথ গ্রহণ করে।" },
+                { q: "সার্ক (SAARC) এর সদর দপ্তর কোথায় অবস্থিত?", options: ["ঢাকা", "কাঠমান্ডু", "কলম্বো", "ইসলামাবাদ"], ans: 1, exp: "নেপালের রাজধানী কাঠমান্ডুতে সার্কের সদর দপ্তর অবস্থিত।" },
+                { q: "পদ্মা সেতুর দৈর্ঘ্য কত কিলোমিটার?", options: ["৬.১৫ কিমি", "৫.৮০ কিমি", "৭.২০ কিমি", "৬.৮০ কিমি"], ans: 0, exp: "পদ্মা সেতুর মূল দৈর্ঘ্য ৬.১৫ কিলোমিটার এবং এতে ৪১টি স্প্যান রয়েছে।" },
+                { q: "বাংলাদেশের প্রথম মহিলা প্রধানমন্ত্রী কে?", options: ["বেগম রোকেয়া", "বেগম খালেদা জিয়া", "শেখ হাসিনা", "সুফিয়া কামাল"], ans: 1, exp: "১৯৯১ সালে বেগম খালেদা জিয়া বাংলাদেশের প্রথম নারী প্রধানমন্ত্রী হিসেবে দায়িত্ব গ্রহণ করেন।" },
+                { q: "জাতিসংঘের বর্তমান মহাসচিবের নাম কী?", options: ["বান কি মুন", "আন্তোনিও গুতেরেস", "কফি আনান", "বুত্রোস ঘালি"], ans: 1, exp: "পর্তুগালের নাগরিক আন্তোনিও গুতেরেস জাতিসংঘের ৯ম মহাসচিব।" },
+                { q: "আন্তর্জাতিক মাতৃভাষা দিবস হিসেবে ২১ ফেব্রুয়ারিকে স্বীকৃতি দেয় কোন সংস্থা?", options: ["UNESCO", "UNICEF", "WHO", "UNDP"], ans: 0, exp: "১৯৯৯ সালের ১৭ নভেম্বর ইউনেস্কো ২১ ফেব্রুয়ারিকে আন্তর্জাতিক মাতৃভাষা দিবস ঘোষণা করে।" },
+                { q: "সংবিধানের কত অনুচ্ছেদ অনুযায়ী মৌলিক অধিকার বলবৎ করা হয়?", options: ["২৭ অনুচ্ছেদ", "৪৪ অনুচ্ছেদ", "১০২ অনুচ্ছেদ", "৪৪ ও ১০২ অনুচ্ছেদ"], ans: 3, exp: "৪৪ অনুচ্ছেদে অধিকারের নিশ্চয়তা ও ১০২(১) অনুচ্ছেদ বলে সুপ্রিম কোর্টে রিট করা যায়।" },
+                { q: "বাংলাদেশের জাতীয় সংসদের স্থপতি কে?", options: ["এফ আর খান", "লুই আই কান", "মাজহারুল ইসলাম", "হামিদুর রহমান"], ans: 1, exp: "যুক্তরাষ্ট্রের বিখ্যাত স্থপতি লুই আই কান।" },
+                { q: "সুন্দরবনকে বিশ্ব ঐতিহ্য (World Heritage) ঘোষণা করে কোন সংস্থা?", options: ["ইউনেস্কো", "ইউএনডিপি", "ইউনেপ", "আইইউসিএন"], ans: 0, exp: "১৯৯৭ সালে ইউনেস্কো সুন্দরবনকে ৭৯৮তম বিশ্ব ঐতিহ্য স্থান হিসেবে ঘোষণা করে।" },
+                { q: "বাংলাদেশের একমাত্র প্রবাল দ্বীপ কোনটি?", options: ["সন্দ্বীপ", "হাতিয়া", "সেন্টমার্টিন", "মহেশখালী"], ans: 2, exp: "সেন্টমার্টিন দ্বীপ (নারিকেল জিঞ্জিরা) একমাত্র সামুদ্রিক প্রবাল দ্বীপ।" },
+                { q: "‘সূর্যোদয়ের দেশ’ বলা হয় কোন দেশকে?", options: ["নরওয়ে", "জাপান", "চীন", "ফিনল্যান্ড"], ans: 1, exp: "জাপানকে সূর্যোদয়ের দেশ বলা হয় (Land of the Rising Sun)।" },
+                { q: "আন্তর্জাতিক রেডক্রস (ICRC)-এর সদর দপ্তর কোথায়?", options: ["জেনেভা", "প্যারিস", "নিউইয়র্ক", "লন্ডন"], ans: 0, exp: "সুইজারল্যান্ডের জেনেভায় রেডক্রসের সদর দপ্তর অবস্থিত।" },
+                { q: "বিশ্ব পরিবেশ দিবস কবে পালিত হয়?", options: ["৫ জুন", "২২ এপ্রিল", "১ মে", "৮ মার্চ"], ans: 0, exp: "প্রতি বছর ৫ জুন বিশ্ব পরিবেশ দিবস পালিত হয়।" },
+                { q: "গ্রিনউইচ মান সময় (GMT) কোন দেশে অবস্থিত?", options: ["যুক্তরাষ্ট্র", "যুক্তরাজ্য", "ফ্রান্স", "জার্মানি"], ans: 1, exp: "লন্ডনের উপকণ্ঠে অবস্থিত গ্রিনউইচ মানমন্দির।" },
+                { q: "মুক্তিযুদ্ধে বীরত্বসূচক সর্বোচ্চ খেতাব কোনটি?", options: ["বীর উত্তম", "বীর শ্রেষ্ঠ", "বীর বিক্রম", "বীর প্রতীক"], ans: 1, exp: "বীর শ্রেষ্ঠ খেতাব সর্বমোট ৭ জনকে প্রদান করা হয়।" },
+                { q: "বাংলাদেশের সংবিধান কবে গৃহীত হয়?", options: ["২৬ মার্চ ১৯৭২", "১৬ ডিসেম্বর ১৯৭২", "৪ নভেম্বর ১৯৭২", "১০ জানুয়ারি ১৯৭২"], ans: 2, exp: "৪ নভেম্বর ১৯৭২ গণপরিষদে সংবিধান গৃহীত হয় এবং কার্যকর হয় ১৬ ডিসেম্বর ১৯৭২।" },
+                { q: "‘আইফেল টাওয়ার’ কোথায় অবস্থিত?", options: ["লন্ডন", "রোম", "প্যারিস", "মাদ্রিদ"], ans: 2, exp: "ফ্রান্সের রাজধানী প্যারিসে আইফেল টাওয়ার অবস্থিত।" },
+                { q: "জলবায়ু পরিবর্তন সংক্রান্ত জাতিসংঘ ফ্রেমওয়ার্ক কনভেনশন কোনটি?", options: ["UNFCCC", "UNEP", "COP", "IPCC"], ans: 0, exp: "UNFCCC = United Nations Framework Convention on Climate Change." },
+                { q: "বর্তমান বিশ্বের দীর্ঘতম নদী কোনটি?", options: ["আমাজন", "নীলনদ", "ইয়াংসিকিয়াং", "মিসিসিপি"], ans: 1, exp: "আফ্রিকা মহাদেশের নীলনদ বিশ্বের দীর্ঘতম নদী।" },
+                { q: "ঢাকা বিশ্ববিদ্যালয় কত সালে প্রতিষ্ঠিত হয়?", options: ["১৯০৫", "১৯১১", "১৯২১", "১৯৪৭"], ans: 2, exp: "১৯২১ সালের ১ জুলাই ঢাকা বিশ্ববিদ্যালয় প্রতিষ্ঠিত হয়।" },
+                { q: "বাংলাদেশের সর্বউত্তরের উপজেলার নাম কী?", options: ["তেঁতুলিয়া", "বাংলাবান্ধা", "রুমা", "টেকনাফ"], ans: 0, exp: "পঞ্চগড় জেলার তেঁতুলিয়া উপজেলা বাংলাদেশের সর্বউত্তরে অবস্থিত।" },
+                { q: "নোবেল পুরস্কার কয়টি বিষয়ে প্রদান করা হয়?", options: ["৫টি", "৬টি", "৭টি", "৪টি"], ans: 1, exp: "বর্তমানে ৬টি বিষয়ে নোবেল পুরস্কার দেওয়া হয়।" },
+                { q: "‘অসমাপ্ত আত্মজীবনী’ কার রচিত গ্রন্থ?", options: ["বঙ্গবন্ধু শেখ মুজিবুর রহমান", "তাজউদ্দীন আহমদ", "মওলানা ভাসানী", "আবুল মনসুর আহমদ"], ans: 0, exp: "জাতির পিতা বঙ্গবন্ধু শেখ মুজিবুর রহমানের আত্মজীবনীমূলক গ্রন্থ।" },
+                { q: "ইউরোপীয় ইউনিয়নের (EU) একক মুদ্রার নাম কী?", options: ["পাউন্ড", "ইউরো", "ডলার", "ফ্রাঙ্ক"], ans: 1, exp: "ইউরোপীয় ইউনিয়নের একক অভিন্ন মুদ্রা হলো ইউরো।" },
+                { q: "বঙ্গবন্ধু স্যাটেলাইট-১ কোন দেশ থেকে উৎক্ষেপণ করা হয়?", options: ["রাশিয়া", "ফ্রান্স", "যুক্তরাষ্ট্র", "চীন"], ans: 2, exp: "যুক্তরাষ্ট্রের ফ্লোরিডার কেনেডি স্পেস সেন্টার থেকে স্পেসএক্সের ফ্যালকন-৯ রকেটে উৎক্ষেপণ করা হয়।" },
+                { q: "বিশ্বব্যাংকের সদর দপ্তর কোথায় অবস্থিত?", options: ["নিউইয়র্ক", "ওয়াশিংটন ডিসি", "জেনেভা", "ভিয়েনা"], ans: 1, exp: "যুক্তরাষ্ট্রের রাজধানী ওয়াশিংটন ডিসিতে বিশ্বব্যাংকের সদর দপ্তর অবস্থিত।" },
+                { q: "বায়ুমণ্ডলে অক্সিজেনের শতকরা পরিমাণ কত?", options: ["২০.৯৫%", "৭৮.০৯%", "০.০৩%", "১.২%"], ans: 0, exp: "বায়ুমণ্ডলে অক্সিজেন প্রায় ২০.৯৫% এবং নাইট্রোজেন প্রায় ৭৮.০৯%।" },
+                { q: "ইতিহাসের জনক কাকে বলা হয়?", options: ["হেরোডোটাস", "অ্যারিস্টটল", "সক্রেটিস", "প্লেটো"], ans: 0, exp: "গ্রিক ঐতিহাসিক হেরোডোটাসকে ইতিহাসের জনক বলা হয়।" },
+                { q: "কম্পিউটারের মস্তিষ্ক বলা হয় কোন অংশকে?", options: ["RAM", "CPU", "Hard Disk", "Monitor"], ans: 1, exp: "CPU (Central Processing Unit)-কে কম্পিউটারের ব্রেন বা মস্তিষ্ক বলা হয়।" }
             ]
         }
     ];
@@ -963,6 +1127,7 @@
         } catch(e) {}
 
         generateResultSummary(totalScoreAll, grandCorrect, grandWrong, grandUnattempted);
+        buildPrintEvaluationList();
     }
 
     function generateResultSummary(totalScore, grandCorrect, grandWrong, grandUnattempted) {
@@ -1023,6 +1188,63 @@
         }
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // প্রিন্ট/পিডিএফ এর জন্য প্রশ্নভিত্তিক মূল্যায়নপত্র তৈরি
+    function buildPrintEvaluationList() {
+        const listContainer = document.getElementById('print-questions-list');
+        let html = '';
+
+        examData.forEach(section => {
+            html += `<div class="section-header" style="margin-top:20px;">${section.name} অংশ</div>`;
+
+            section.questions.forEach((q, i) => {
+                const selected = document.querySelector(`input[name="${section.id}_q${i}"]:checked`);
+                const correctIdx = parseInt(q.ans);
+                const correctText = q.options ? q.options[correctIdx] : '';
+                const correctLetter = optionLetters[correctIdx] || '';
+
+                let statusBadge = '';
+                let userChoiceText = '';
+
+                if (selected) {
+                    const selectedVal = parseInt(selected.value);
+                    const selectedText = q.options ? q.options[selectedVal] : '';
+                    const selectedLetter = optionLetters[selectedVal] || '';
+
+                    if (selectedVal === correctIdx) {
+                        statusBadge = `<span class="print-badge badge-correct">✔️ সঠিক উত্তর</span>`;
+                        userChoiceText = `<b>আপনার উত্তর:</b> <span style="color:#166534;">${selectedLetter}. ${selectedText}</span>`;
+                    } else {
+                        statusBadge = `<span class="print-badge badge-wrong">❌ ভুল উত্তর</span>`;
+                        userChoiceText = `<b>আপনার উত্তর:</b> <span style="color:#991b1b; text-decoration:line-through;">${selectedLetter}. ${selectedText}</span>`;
+                    }
+                } else {
+                    statusBadge = `<span class="print-badge badge-unattempted">⚪ অনুত্তরিত</span>`;
+                    userChoiceText = `<b>আপনার উত্তর:</b> <i>উত্তর প্রদান করা হয়নি</i>`;
+                }
+
+                html += `
+                    <div class="print-q-card">
+                        <div class="print-q-header">
+                            <strong style="font-size:15px; color:#0f172a;">${i + 1}. ${q.q}</strong>
+                            ${statusBadge}
+                        </div>
+                        <div class="print-ans-row">${userChoiceText}</div>
+                        <div class="print-ans-row"><b>সঠিক উত্তর:</b> <span style="color:#15803d; font-weight:700;">${correctLetter}. ${correctText}</span></div>
+                        <div class="print-exp-box">
+                            <b>💡 ব্যাখ্যা:</b> ${q.exp || 'কোনো ব্যাখ্যা দেওয়া হয়নি।'}
+                        </div>
+                    </div>
+                `;
+            });
+        });
+
+        listContainer.innerHTML = html;
+    }
+
+    function printEvaluationReport() {
+        window.print();
     }
 </script>
 
