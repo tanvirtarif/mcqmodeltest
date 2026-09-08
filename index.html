@@ -272,15 +272,15 @@
             font-family: inherit;
         }
 
-        /* Written Section Preview Card */
-        .written-preview-card {
+        /* Written Section Notice Card */
+        .written-notice-card {
             background: #ffffff;
-            border: 2px solid #ef4444;
+            border: 2px dashed #3b82f6;
             border-radius: 14px;
             margin: 28px 0;
-            padding: 20px;
+            padding: 24px 20px;
             text-align: center;
-            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.12);
+            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.08);
         }
 
         .written-header {
@@ -288,8 +288,8 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            color: #b91c1c;
-            margin-bottom: 6px;
+            color: var(--primary);
+            margin-bottom: 8px;
         }
 
         .written-header h3 {
@@ -299,9 +299,9 @@
         }
 
         .written-timer-badge {
-            background: #fef2f2;
-            border: 1px solid #fecaca;
-            color: #dc2626;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            color: #1d4ed8;
             padding: 6px 16px;
             border-radius: 20px;
             display: inline-block;
@@ -310,43 +310,18 @@
             margin-bottom: 16px;
         }
 
-        .preview-frame-container {
-            width: 100%;
-            height: 500px;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid #cbd5e1;
+        .written-info-box {
             background: #f8fafc;
-            margin-bottom: 16px;
-        }
-
-        .preview-frame-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .btn-download-written {
-            display: inline-flex;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 18px;
+            color: #1e293b;
+            font-size: 16.5px;
+            font-weight: 700;
+            display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
-            color: #ffffff;
-            padding: 13px 28px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 15px;
-            text-decoration: none;
-            transition: all 0.25s ease;
-            box-shadow: 0 4px 14px rgba(220, 38, 38, 0.3);
-            font-family: inherit;
-        }
-
-        .btn-download-written:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(220, 38, 38, 0.45);
-            background: linear-gradient(135deg, #b91c1c, #991b1b);
+            gap: 10px;
         }
 
         /* Top Bar */
@@ -381,7 +356,6 @@
         @media (max-width: 500px) {
             .top-bar { padding: 10px 14px; }
             .timer-box { font-size: 17px; }
-            .preview-frame-container { height: 380px; }
         }
 
         /* Section Header */
@@ -623,7 +597,7 @@
             .btn-secondary, 
             .btn-print, 
             .btn-small, 
-            .written-preview-card, 
+            .written-notice-card, 
             .join-us-bar, 
             #step-1-screen, 
             #step-2-screen, 
@@ -746,7 +720,7 @@
                 <li>কোনো বই, নোট, ইন্টারনেট বা অন্য যে কোনো মাধ্যমের সাহায্য নেওয়া সম্পূর্ণ নিষিদ্ধ।</li>
                 <li>নির্ধারিত অংশে নাম, কোড সঠিকভাবে পূরণ করতে হবে।</li>
                 <li><strong>বিশেষ সতর্কবার্তা:</strong> MCQ অংশে <strong>একবার কোনো অপশন নির্বাচন (Select) করে ফেললে তা লক হয়ে যাবে</strong>; পরবর্তীতে তা আর পরিবর্তন করা যাবে না। তাই পূর্ণ নিশ্চিত হয়ে সতর্কতার সাথে সঠিক উত্তর সিলেক্ট করবে।</li>
-                <li>MCQ অংশ সাবমিট করার পর সামগ্রিক ফলাফল, ব্যাখ্যাসহ উত্তর প্রিন্ট করা যাবে এবং লিখিত প্রশ্নপত্র পাওয়া যাবে।</li>
+                <li>MCQ অংশ সাবমিট করার পর সামগ্রিক ফলাফল ও ব্যাখ্যাসহ উত্তর দেখা ও প্রিন্ট করা যাবে।</li>
             </ul>
 
             <h3>📊 MCQ অংশের বিষয় ও মানবণ্টন:</h3>
@@ -811,26 +785,21 @@
 
         <!-- 🖨️ প্রিন্ট ও PDF ডাউনলোড বাটন -->
         <button type="button" class="btn-print" onclick="printEvaluationReport()">
-            <span>🖨️</span> ব্যাখ্যাসহ MCQ উত্তরপত্র pdf ডাউনলোড বা প্রিন্ট করুন। বি.দ্র.: সতর্কতাস্বরূপ প্রিন্ট শুরুর পূর্বে রিটেন প্রশ্ন নতুন ট্যাবে ওপেন করে নিন।
+            <span>🖨️</span> ব্যাখ্যাসহ MCQ উত্তরপত্র pdf ডাউনলোড বা প্রিন্ট করুন
         </button>
 
-        <!-- ================= লিখিত প্রশ্ন প্রিভিউ ও ডাউনলোড সেকশন ================= -->
-        <div class="written-preview-card">
+        <!-- ================= লিখিত প্রশ্ন নোটিশ সেকশন ================= -->
+        <div class="written-notice-card">
             <div class="written-header">
                 <span style="font-size: 24px;">📝</span>
-                <h3>লিখিত অংশের প্রশ্নপত্র</h3>
+                <h3>লিখিত অংশের নির্দেশনা</h3>
             </div>
             <div class="written-timer-badge">⏳ লিখিত খাতা সাবমিট করার শেষ সময় রাত ১০:৩০ মিনিট</div>
             
-            <!-- ড্রাইভ ফাইলের লাইভ প্রিভিউ ফ্রেম -->
-            <div class="preview-frame-container">
-                <iframe src="https://drive.google.com/file/d/1CRNRpOYqkA3KFBLHzDcnyeV3bTJIoG4p/preview" allow="autoplay"></iframe>
+            <!-- তথ্যসমৃদ্ধ নোটিশ বক্স -->
+            <div class="written-info-box">
+                📌 লিখিত প্রশ্নের জন্য গুগল ক্লাসরুম বা টেলিগ্রাম গ্রুপ চেক কর
             </div>
-
-            <!-- ডাউনলোড ও নতুন ট্যাবে খোলার বাটন -->
-            <a href="https://drive.google.com/file/d/1CRNRpOYqkA3KFBLHzDcnyeV3bTJIoG4p/view" target="_blank" class="btn-download-written">
-                ⬇️ লিখিত প্রশ্নপত্র pdf নতুন ট্যাবে দেখুন / ডাউনলোড করুন
-            </a>
         </div>
 
         <!-- ================= প্রিন্ট/পিডিএফ সেকশন ================= -->
